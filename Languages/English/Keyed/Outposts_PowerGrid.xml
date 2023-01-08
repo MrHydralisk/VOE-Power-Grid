@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+    <VOEPowerGrid.Construct.Label>Construct</VOEPowerGrid.Construct.Label>
+    <VOEPowerGrid.Construct.Desc>Construct new building</VOEPowerGrid.Construct.Desc>
+    <VOEPowerGrid.Construct.Reason>Maximum capacity reached</VOEPowerGrid.Construct.Reason>
+    <VOEPowerGrid.Deconstruct.Label>Deconstruct</VOEPowerGrid.Deconstruct.Label>
+    <VOEPowerGrid.Deconstruct.Desc>Deconstruct existing building</VOEPowerGrid.Deconstruct.Desc>
+    <VOEPowerGrid.Deconstruct.Reason>Nothing to deconstruct</VOEPowerGrid.Deconstruct.Reason>
+    <VOEPowerGrid.Base.ProductionString>{0}Capacity: {1} / {2}\nPower: {3}</VOEPowerGrid.Base.ProductionString>
+    <VOEPowerGrid.MaxSkillTooLow>No colonist with high enough skill. Require {0}. Current {1}</VOEPowerGrid.MaxSkillTooLow>
+    <VOEPowerGrid.ConstructionSkillCostTooHigh>Capacity too low, structure cost {0}</VOEPowerGrid.ConstructionSkillCostTooHigh>
+    <VOEPowerGrid.ConstructionMaterialCostTooHigh>Not enough materials, structure cost:\n{0}</VOEPowerGrid.ConstructionMaterialCostTooHigh>
+    <VOEPowerGrid.ResearchNotFinished>Research not finished</VOEPowerGrid.ResearchNotFinished>    
+    <VOEPowerGrid.Settings.PowerMultiplier>Power Multiplier</VOEPowerGrid.Settings.PowerMultiplier>
+    <VOEPowerGrid.Settings.BuildingCapacityPerSkill>Building Capacity Per Skill</VOEPowerGrid.Settings.BuildingCapacityPerSkill>
+    <VOEPowerGrid.Settings.BaseBuildingCapacity>Base Building Capacity</VOEPowerGrid.Settings.BaseBuildingCapacity>
+
+    <VOEPowerGrid.Outlet.Connected>Connected to {0}\n</VOEPowerGrid.Outlet.Connected>
+    <VOEPowerGrid.Outlet.NotConnected>Not connected\n</VOEPowerGrid.Outlet.NotConnected>
+    <VOEPowerGrid.Outlet.Disconnect>Disconnect from {0}\n</VOEPowerGrid.Outlet.Disconnect>
+    <VOEPowerGrid.Outlet.Connect.Label>Connected to Power Grid</VOEPowerGrid.Outlet.Connect.Label>
+    <VOEPowerGrid.Outlet.Connect.Desc>Connected to an external outpost with Power Grid</VOEPowerGrid.Outlet.Connect.Desc>
+    <VOEPowerGrid.Outlet.AlreadyConnected>Outpost {0} already connected to outlet</VOEPowerGrid.Outlet.AlreadyConnected>
+    <VOEPowerGrid.Outlet.Connect.Reason>No Power Grid to connect</VOEPowerGrid.Outlet.Connect.Reason>
+    
+    <VOEPowerGrid.MustBeMade.River>Must be made on river</VOEPowerGrid.MustBeMade.River>
+    <VOEPowerGrid.MustBeMade.Coast>Must be made on coast</VOEPowerGrid.MustBeMade.Coast>
+</LanguageData>

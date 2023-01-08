@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<operations>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/WorldObjectDef[defName ="Outpost_PowerGrid_Watermill_Generator"]/modExtensions/li[@Class="VOEPowerGrid.OutpostExtension_PowerGrid"]/ConstructionOptions</xpath>
+				<value>
+					<li>
+						<BuildingDef>VFE_AdvancedWatermillGenerator</BuildingDef>
+						<ConstructionSkillsPerOne>2.5</ConstructionSkillsPerOne>
+						<MinConstructionSkill>8</MinConstructionSkill>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/WorldObjectDef[defName ="Outpost_PowerGrid_WindTurbine"]/modExtensions/li[@Class="VOEPowerGrid.OutpostExtension_PowerGrid"]/ConstructionOptions</xpath>
+				<value>
+					<li>
+						<BuildingDef>VFE_AdvancedWindTurbine</BuildingDef>
+						<ConstructionSkillsPerOne>4.5</ConstructionSkillsPerOne>
+						<MinConstructionSkill>8</MinConstructionSkill>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/WorldObjectDef[defName ="Outpost_PowerGrid_Solar_Generator"]/modExtensions/li[@Class="VOEPowerGrid.OutpostExtension_PowerGrid"]/ConstructionOptions</xpath>
+				<value>
+					<li>
+						<BuildingDef>VFE_AdvancedSolarGenerator</BuildingDef>
+						<ConstructionSkillsPerOne>3</ConstructionSkillsPerOne>
+						<MinConstructionSkill>8</MinConstructionSkill>
+						<FullSunPower>3000</FullSunPower>
+						<NightPower>0</NightPower>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/WorldObjectDef[defName ="Outpost_PowerGrid_Geothermal_Generator"]/modExtensions/li[@Class="VOEPowerGrid.OutpostExtension_PowerGrid"]/ConstructionOptions</xpath>
+				<value>
+					<li>
+						<BuildingDef>VPE_AdvancedGeothermalGenerator</BuildingDef>
+						<ConstructionSkillsPerOne>6</ConstructionSkillsPerOne>
+						<MinConstructionSkill>10</MinConstructionSkill>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/WorldObjectDef[defName ="Outpost_PowerGrid_PowerCell"]/modExtensions/li[@Class="VOEPowerGrid.OutpostExtension_PowerGrid"]/ConstructionOptions</xpath>
+				<value>
+					<li>
+						<BuildingDef>VFE_SmallVanometricPowerCell</BuildingDef>
+						<ConstructionSkillsPerOne>0.5</ConstructionSkillsPerOne>
+						<MinConstructionSkill>2</MinConstructionSkill>
+					</li>
+					<li>
+						<BuildingDef>VFE_LargeVanometricPowerCell</BuildingDef>
+						<ConstructionSkillsPerOne>2</ConstructionSkillsPerOne>
+						<MinConstructionSkill>6</MinConstructionSkill>
+					</li>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+
+</Patch>

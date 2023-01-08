@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <WorldObjectDef ParentName="OutpostBase">
+    <defName>Outpost_PowerGrid_Watermill_Generator</defName>
+    <label>watermill generators power grid</label>
+    <description>Places a temporary, autonomously-led camp that specializes in generating power with watermill generators. Constantly providing it to faction's primary colony.</description>
+    <worldObjectClass>VOEPowerGrid.Outpost_PowerGrid_Watermill</worldObjectClass>
+    <expandingIconTexture>WorldObjects/OutpostWatermillGeneratorGrid</expandingIconTexture>
+    <modExtensions>
+      <li Class="Outposts.OutpostExtension">
+        <RequiredSkills>
+          <Construction>10</Construction>
+        </RequiredSkills>
+        <TicksPerProduction>-1</TicksPerProduction>
+        <TicksToPack>60000</TicksToPack>
+        <TicksToSetUp>60000</TicksToSetUp>
+        <ProvidedFood>MealFine_Veg</ProvidedFood>
+        <DisplaySkills>
+          <li>Construction</li>
+        </DisplaySkills>
+      </li>
+      <li Class="VOEPowerGrid.OutpostExtension_PowerGrid">
+        <ConstructionOptions>
+          <li>
+            <BuildingDef>WatermillGenerator</BuildingDef>
+            <ConstructionSkillsPerOne>1.5</ConstructionSkillsPerOne>
+            <MinConstructionSkill>6</MinConstructionSkill>
+          </li>
+        </ConstructionOptions>
+      </li>
+      <li Class="KCSG.CustomGenOption">
+        <fullClear>true</fullClear>
+      </li>
+    </modExtensions>
+  </WorldObjectDef>
+
+  <WorldObjectDef ParentName="OutpostBase">
+    <defName>Outpost_PowerGrid_WindTurbine</defName>
+    <label>wind turbine power grid</label>
+    <description>Places a temporary, autonomously-led camp that specializes in generating power with wind turbine. Constantly providing it to faction's primary colony.</description>
+    <worldObjectClass>VOEPowerGrid.Outpost_PowerGrid_WindTurbine</worldObjectClass>
+    <expandingIconTexture>WorldObjects/OutpostWindTurbineGrid</expandingIconTexture>
+    <modExtensions>
+      <li Class="Outposts.OutpostExtension">
+        <RequiredSkills>
+          <Construction>10</Construction>
+        </RequiredSkills>
+        <TicksPerProduction>-1</TicksPerProduction>
+        <TicksToPack>60000</TicksToPack>
+        <TicksToSetUp>60000</TicksToSetUp>
+        <ProvidedFood>MealFine_Veg</ProvidedFood>
+        <DisplaySkills>
+          <li>Construction</li>
+        </DisplaySkills>
+      </li>
+      <li Class="VOEPowerGrid.OutpostExtension_PowerGrid">
+        <ConstructionOptions>
+          <li>
+            <BuildingDef>WindTurbine</BuildingDef>
+            <ConstructionSkillsPerOne>2.5</ConstructionSkillsPerOne>
+            <MinConstructionSkill>6</MinConstructionSkill>
+          </li>
+        </ConstructionOptions>
+      </li>
+      <li Class="KCSG.CustomGenOption">
+        <fullClear>true</fullClear>
+      </li>
+    </modExtensions>
+  </WorldObjectDef>
+
+  <WorldObjectDef ParentName="OutpostBase">
+    <defName>Outpost_PowerGrid_Solar_Generator</defName>
+    <label>solar generators power grid</label>
+    <description>Places a temporary, autonomously-led camp that specializes in generating power with solar generators. Constantly providing it to faction's primary colony.</description>
+    <worldObjectClass>VOEPowerGrid.Outpost_PowerGrid_Solar</worldObjectClass>
+    <expandingIconTexture>WorldObjects/OutpostSolarGeneratorGrid</expandingIconTexture>
+    <modExtensions>
+      <li Class="Outposts.OutpostExtension">
+        <RequiredSkills>
+          <Construction>10</Construction>
+        </RequiredSkills>
+        <TicksPerProduction>-1</TicksPerProduction>
+        <TicksToPack>60000</TicksToPack>
+        <TicksToSetUp>60000</TicksToSetUp>
+        <ProvidedFood>MealFine_Veg</ProvidedFood>
+        <DisplaySkills>
+          <li>Construction</li>
+        </DisplaySkills>
+      </li>
+      <li Class="VOEPowerGrid.OutpostExtension_PowerGrid">
+        <ConstructionOptions>
+          <li>
+            <BuildingDef>SolarGenerator</BuildingDef>
+            <ConstructionSkillsPerOne>2</ConstructionSkillsPerOne>
+            <MinConstructionSkill>6</MinConstructionSkill>
+            <FullSunPower>1700</FullSunPower>
+            <NightPower>0</NightPower>
+          </li>
+        </ConstructionOptions>
+      </li>
+      <li Class="KCSG.CustomGenOption">
+        <fullClear>true</fullClear>
+      </li>
+    </modExtensions>
+  </WorldObjectDef>
+
+    <WorldObjectDef ParentName="OutpostBase">
+    <defName>Outpost_PowerGrid_Geothermal_Generator</defName>
+    <label>geothermal generators power grid</label>
+    <description>Places a temporary, autonomously-led camp that specializes in generating power with geothermal generators. Constantly providing it to faction's primary colony.</description>
+    <worldObjectClass>VOEPowerGrid.Outpost_PowerGrid</worldObjectClass>
+    <expandingIconTexture>WorldObjects/OutpostGeothermalGeneratorGrid</expandingIconTexture>
+    <expandingIconDrawSize>1.25</expandingIconDrawSize>
+    <modExtensions>
+      <li Class="Outposts.OutpostExtension">
+        <RequiredSkills>
+          <Construction>10</Construction>
+        </RequiredSkills>
+        <TicksPerProduction>-1</TicksPerProduction>
+        <TicksToPack>60000</TicksToPack>
+        <TicksToSetUp>60000</TicksToSetUp>
+        <ProvidedFood>MealFine_Veg</ProvidedFood>
+        <DisplaySkills>
+          <li>Construction</li>
+        </DisplaySkills>
+      </li>
+      <li Class="VOEPowerGrid.OutpostExtension_PowerGrid">
+        <ConstructionOptions>
+          <li>
+            <BuildingDef>GeothermalGenerator</BuildingDef>
+            <ConstructionSkillsPerOne>5</ConstructionSkillsPerOne>
+            <MinConstructionSkill>8</MinConstructionSkill>
+          </li>
+        </ConstructionOptions>
+      </li>
+      <li Class="KCSG.CustomGenOption">
+        <fullClear>true</fullClear>
+      </li>
+    </modExtensions>
+  </WorldObjectDef>
+
+  <WorldObjectDef ParentName="OutpostBase">
+    <defName>Outpost_PowerGrid_PowerCell</defName>
+    <label>power cell grid</label>
+    <description>Places a temporary, autonomously-led camp that specializes in generating power with power cells. Constantly providing it to faction's primary colony.</description>
+    <worldObjectClass>VOEPowerGrid.Outpost_PowerGrid</worldObjectClass>
+    <expandingIconTexture>WorldObjects/OutpostPowerCellGrid</expandingIconTexture>
+    <expandingIconDrawSize>0.8</expandingIconDrawSize>
+    <modExtensions>
+      <li Class="Outposts.OutpostExtension">
+        <RequiredSkills>
+          <Construction>10</Construction>
+        </RequiredSkills>
+        <TicksPerProduction>-1</TicksPerProduction>
+        <TicksToPack>60000</TicksToPack>
+        <TicksToSetUp>60000</TicksToSetUp>
+        <ProvidedFood>MealFine_Veg</ProvidedFood>
+        <DisplaySkills>
+          <li>Construction</li>
+        </DisplaySkills>
+      </li>
+      <li Class="VOEPowerGrid.OutpostExtension_PowerGrid">
+        <ConstructionOptions>
+          <li>
+            <BuildingDef>VanometricPowerCell</BuildingDef>
+            <ConstructionSkillsPerOne>1</ConstructionSkillsPerOne>
+            <MinConstructionSkill>4</MinConstructionSkill>
+          </li>
+        </ConstructionOptions>
+      </li>
+      <li Class="KCSG.CustomGenOption">
+        <fullClear>true</fullClear>
+      </li>
+    </modExtensions>
+  </WorldObjectDef>
+
+</Defs>

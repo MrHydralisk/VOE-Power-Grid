@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Defs>
+    <ThingDef ParentName="BuildingBase">
+        <defName>Outpost_PowerGrid_DeliverySpot</defName>
+        <label>power grid outlet</label>
+        <description>Designates a spot for items from outposts to be delivered to.</description>
+        <drawerType>MapMeshAndRealTime</drawerType>
+        <graphicData>
+          <texPath>Things/Building/PowerGridOutlet</texPath>
+          <graphicClass>Graphic_Single</graphicClass>
+          <drawSize>(1,1)</drawSize>
+        </graphicData>
+        <altitudeLayer>BuildingOnTop</altitudeLayer>
+        <statBases>
+          <MaxHitPoints>300</MaxHitPoints>
+          <WorkToBuild>200</WorkToBuild>
+        </statBases>
+        <scatterableOnMapGen>false</scatterableOnMapGen>
+        <designationCategory>Power</designationCategory>
+        <researchPrerequisites>
+          <li>Electricity</li>
+        </researchPrerequisites>
+        <costList>
+          <Steel>100</Steel>
+          <ComponentIndustrial>2</ComponentIndustrial>
+        </costList>
+        <constructEffect>ConstructMetal</constructEffect>
+        <passability>Standable</passability>
+        <building>
+          <canPlaceOverImpassablePlant>false</canPlaceOverImpassablePlant>
+          <ai_chillDestination>false</ai_chillDestination>
+          <allowWireConnection>false</allowWireConnection>
+          <artificialForMeditationPurposes>false</artificialForMeditationPurposes>
+        </building>
+        <comps>
+          <li Class="CompProperties_Power">
+            <compClass>VOEPowerGrid.CompPowerGridOutlet</compClass>
+            <transmitsPower>true</transmitsPower>
+            <showPowerNeededIfOff>false</showPowerNeededIfOff>
+          </li>
+          <li Class="CompProperties_Breakdownable"/>
+        </comps>
+        <constructionSkillPrerequisite>4</constructionSkillPrerequisite>
+      </ThingDef>
+</Defs>

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<operations>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/WorldObjectDef[defName ="Outpost_PowerGrid_Watermill_Generator"]/modExtensions/li[@Class="VOEPowerGrid.OutpostExtension_PowerGrid"]/ConstructionOptions</xpath>
+				<value>
+					<li>
+						<BuildingDef>WatermillGenerator_II</BuildingDef>
+						<ConstructionSkillsPerOne>2.5</ConstructionSkillsPerOne>
+						<MinConstructionSkill>8</MinConstructionSkill>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/WorldObjectDef[defName ="Outpost_PowerGrid_WindTurbine"]/modExtensions/li[@Class="VOEPowerGrid.OutpostExtension_PowerGrid"]/ConstructionOptions</xpath>
+				<value>
+					<li>
+						<BuildingDef>WindTurbine_II</BuildingDef>
+						<ConstructionSkillsPerOne>4.5</ConstructionSkillsPerOne>
+						<MinConstructionSkill>8</MinConstructionSkill>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/WorldObjectDef[defName ="Outpost_PowerGrid_Solar_Generator"]/modExtensions/li[@Class="VOEPowerGrid.OutpostExtension_PowerGrid"]/ConstructionOptions</xpath>
+				<value>
+					<li>
+						<BuildingDef>SolarGenerator_II</BuildingDef>
+						<ConstructionSkillsPerOne>3</ConstructionSkillsPerOne>
+						<MinConstructionSkill>8</MinConstructionSkill>
+						<FullSunPower>3400</FullSunPower>
+						<NightPower>0</NightPower>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/WorldObjectDef[defName ="Outpost_PowerGrid_Geothermal_Generator"]/modExtensions/li[@Class="VOEPowerGrid.OutpostExtension_PowerGrid"]/ConstructionOptions</xpath>
+				<value>
+					<li>
+						<BuildingDef>GeothermalGenerator_II</BuildingDef>
+						<ConstructionSkillsPerOne>6</ConstructionSkillsPerOne>
+						<MinConstructionSkill>10</MinConstructionSkill>
+					</li>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+
+</Patch>

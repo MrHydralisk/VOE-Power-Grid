@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<operations>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/WorldObjectDef[defName ="Outpost_PowerGrid_Solar_Generator"]/modExtensions/li[@Class="VOEPowerGrid.OutpostExtension_PowerGrid"]/ConstructionOptions</xpath>
+				<value>
+					<li>
+						<BuildingDef>VFEA_AncientSolarGenerator</BuildingDef>
+						<ConstructionSkillsPerOne>0.5</ConstructionSkillsPerOne>
+						<MinConstructionSkill>6</MinConstructionSkill>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/WorldObjectDef[defName ="Outpost_PowerGrid_Geothermal_Generator"]/modExtensions/li[@Class="VOEPowerGrid.OutpostExtension_PowerGrid"]/ConstructionOptions</xpath>
+				<value>
+					<li>
+						<BuildingDef>VFEA_AncientGeothermalPlant</BuildingDef>
+						<ConstructionSkillsPerOne>5</ConstructionSkillsPerOne>
+						<MinConstructionSkill>10</MinConstructionSkill>
+					</li>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+
+</Patch>

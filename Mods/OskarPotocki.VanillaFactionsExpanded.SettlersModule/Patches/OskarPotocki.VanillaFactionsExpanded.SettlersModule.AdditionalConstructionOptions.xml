@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<operations>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/WorldObjectDef[defName ="Outpost_PowerGrid_WindTurbine"]/modExtensions/li[@Class="VOEPowerGrid.OutpostExtension_PowerGrid"]/ConstructionOptions</xpath>
+				<value>
+					<li>
+						<BuildingDef>Windmill</BuildingDef>
+						<ConstructionSkillsPerOne>1</ConstructionSkillsPerOne>
+						<MinConstructionSkill>4</MinConstructionSkill>
+					</li>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+
+</Patch>
