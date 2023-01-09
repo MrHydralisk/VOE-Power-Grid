@@ -2,6 +2,7 @@
 using System.Linq;
 using RimWorld;
 using Verse;
+using UnityEngine;
 
 namespace VOEPowerGrid
 {
@@ -10,6 +11,7 @@ namespace VOEPowerGrid
     {
         private Outpost_PowerGrid outpostPowerGrid;
         public Outpost_PowerGrid OutpostPowerGrid => outpostPowerGrid;
+        private float powerLossDueToRange = 1f;
         protected override float DesiredPowerOutput => outpostPowerGrid?.ProducedPower ?? 0f;
         public override void PostDestroy(DestroyMode mode, Map previousMap)
         {
@@ -21,13 +23,12 @@ namespace VOEPowerGrid
         {
             outpostPowerGrid?.SetNewOutlet(null);
             outpostPowerGrid = null;
+            powerLossDueToRange = 1f;
 #if v1_3
             UpdateDesiredPowerOutput1_3();
 #elif v1_4
             UpdateDesiredPowerOutput();
 #endif
-
-
         }
 
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
@@ -43,12 +44,24 @@ namespace VOEPowerGrid
                 {
                     List<FloatMenuOption> FMO = powerGrids.Select(delegate (Outpost_PowerGrid opd)
                     {
-                        return opd.isNotConnected ? new FloatMenuOption(opd.Label + " +" + opd.ProducedPower.ToStringSafe(), delegate
+                        if (!opd.isNotConnected)
                         {
-                            outpostPowerGrid?.SetNewOutlet(null);
-                            outpostPowerGrid = opd;
-                            outpostPowerGrid?.SetNewOutlet(this.parent);
-                        }, itemIcon: opd.ExpandingIcon, iconColor: opd.ExpandingIconColor) : new FloatMenuOption("VOEPowerGrid.Outlet.AlreadyConnected".Translate(opd.Label).RawText, action: null, itemIcon: opd.ExpandingIcon, iconColor: opd.ExpandingIconColor);
+                            return new FloatMenuOption("VOEPowerGrid.Outlet.AlreadyConnected".Translate(opd.Label).RawText, action: null, itemIcon: opd.ExpandingIcon, iconColor: opd.ExpandingIconColor);
+                        }
+                        else if (opd.PowerNetworkRange < Find.WorldGrid.TraversalDistanceBetween(this.parent.Tile, opd.Tile))
+                        {
+                            return new FloatMenuOption("VOEPowerGrid.Outlet.PowerRangeNotEnough".Translate(opd.Label, opd.PowerNetworkRange, Find.WorldGrid.TraversalDistanceBetween(this.parent.Tile, opd.Tile)).RawText, action: null, itemIcon: opd.ExpandingIcon, iconColor: opd.ExpandingIconColor);
+                        }
+                        else
+                        {
+                            return new FloatMenuOption(opd.Label + " +" + opd.ProducedPower.ToStringSafe(), delegate
+                            {
+                                outpostPowerGrid?.SetNewOutlet(null);
+                                outpostPowerGrid = opd;
+                                outpostPowerGrid?.SetNewOutlet(this.parent);
+                                powerLossDueToRange = VOEPowerGrid_Mod.Settings.PowerLossPerTiles > 0 ? Mathf.Min(1f, Mathf.Max(0f, ((Find.WorldGrid.TraversalDistanceBetween(this.parent.Tile, opd.Tile) / (float)VOEPowerGrid_Mod.Settings.PowerLossPerTiles) - 1f) / 100)) : 0f;
+                            }, itemIcon: opd.ExpandingIcon, iconColor: opd.ExpandingIconColor);
+                        }                    
                     })
                         .ToList();
                     if (outpostPowerGrid != null)
@@ -71,14 +84,14 @@ namespace VOEPowerGrid
         public override void UpdateDesiredPowerOutput()
 #endif
         {
-            PowerOutput = DesiredPowerOutput;
+            PowerOutput = DesiredPowerOutput * (1f - powerLossDueToRange);
         }
 
         public override string CompInspectStringExtra()
         {
             string s = "";
             if (outpostPowerGrid != null)
-                s += "VOEPowerGrid.Outlet.Connected".Translate(outpostPowerGrid.Label).RawText;
+                s += "VOEPowerGrid.Outlet.Connected".Translate(outpostPowerGrid.Label).RawText + "VOEPowerGrid.Outlet.PowerLoss".Translate(powerLossDueToRange.ToStringPercent()).RawText;
             else
                 s += "VOEPowerGrid.Outlet.NotConnected".Translate().RawText;
             return s + base.CompInspectStringExtra();
@@ -88,6 +101,7 @@ namespace VOEPowerGrid
         {
             base.PostExposeData();
             Scribe_References.Look(ref outpostPowerGrid, "outpostPowerGrid");
+            Scribe_Values.Look(ref powerLossDueToRange, "powerLossDueToRange");
         }
     }
 }

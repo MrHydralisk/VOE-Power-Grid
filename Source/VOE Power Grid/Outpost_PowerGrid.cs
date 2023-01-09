@@ -12,14 +12,8 @@ namespace VOEPowerGrid
         [PostToSetings("VOEPowerGrid.Settings.PowerMultiplier", PostToSetingsAttribute.DrawMode.Percentage, 1f, 0.1f, 5f, null, null)]
         public float PowerMultiplier = 1f;
 
-        [PostToSetings("VOEPowerGrid.Settings.BuildingCapacityPerSkill", PostToSetingsAttribute.DrawMode.Percentage, 1f, 0.1f, 5f, null, null)]
-        public float BuildingCapacityPerSkill = 1f;
-
-        [PostToSetings("VOEPowerGrid.Settings.BaseBuildingCapacity", PostToSetingsAttribute.DrawMode.IntSlider, 0, 0, 20, null, null)]
-        public int BaseBuildingCapacity = 0;
-
-        private float currentStructureAmount => BuildingsCounter.Count() > 0 ? BuildingsCounter.Sum((ThingDefCountClass tdcc) => tdcc.count * PowerGridExt.ConstructionOptions.FirstOrDefault((ConstructionOption co) => co.BuildingDef == tdcc.thingDef).ConstructionSkillsPerOne) : 0f;
-        public float maxStructureAmount => BaseBuildingCapacity + TotalSkill(SkillDefOf.Construction) * BuildingCapacityPerSkill;
+        private float currentStructureAmount => (BuildingsCounter.Count() > 0 ? BuildingsCounter.Sum((ThingDefCountClass tdcc) => tdcc.count * PowerGridExt.ConstructionOptions.FirstOrDefault((ConstructionOption co) => co.BuildingDef == tdcc.thingDef).ConstructionSkillsPerOne) : 0f) + (ConstructBuildingsCounter.Count() > 0 ? ConstructBuildingsCounter.Where((ThingDefCountClass tdcc) => tdcc.thingDef != ThingDefOfLocal.PowerTransmissionTower).Sum((ThingDefCountClass tdcc) => PowerGridExt.ConstructionOptions.FirstOrDefault((ConstructionOption co) => co.BuildingDef == tdcc.thingDef).ConstructionSkillsPerOne) : 0f);
+        public float maxStructureAmount => VOEPowerGrid_Mod.Settings.BaseBuildingCapacity + TotalSkill(SkillDefOf.Construction) * VOEPowerGrid_Mod.Settings.BuildingCapacityPerSkill;
 
         protected OutpostExtension_Choose ChooseExt => base.Ext as OutpostExtension_Choose;
 
@@ -28,6 +22,12 @@ namespace VOEPowerGrid
         private ThingWithComps outlet;
         public ThingWithComps Outlet => outlet;
         public bool isNotConnected => outlet == null;
+        private int TransmissionTowerAmount;
+        public int PowerNetworkRange => TransmissionTowerAmount * VOEPowerGrid_Mod.Settings.TransmissionTowerRange;
+
+        private bool isWorkingOnBuilding;
+        public List<ThingDefCountClass> ConstructBuildingsCounter = new List<ThingDefCountClass>();
+        public List<ThingDefCountClass> DeconstructBuildingsCounter = new List<ThingDefCountClass>();
 
         private float cashedProducedPower;
         public virtual float ProducedPower => cashedProducedPower;
@@ -67,23 +67,49 @@ namespace VOEPowerGrid
 #endif
             }
         }
+
+        public override void Tick()
+        {
+            base.Tick();
+            if (isWorkingOnBuilding)
+            {
+                if (ConstructBuildingsCounter.Count() > 0)
+                {
+                    ThingDefCountClass tdcc = ConstructBuildingsCounter.FirstOrDefault();
+                    tdcc.count--;
+                    if (tdcc.count <= 0)
+                    {
+                        ConstructFinish(tdcc.thingDef);
+                        ConstructBuildingsCounter.Remove(tdcc);
+                    }
+                }
+                if (DeconstructBuildingsCounter.Count() > 0)
+                {
+                    ThingDefCountClass tdcc = DeconstructBuildingsCounter.FirstOrDefault();
+                    tdcc.count--;
+                    if (tdcc.count <= 0)
+                    {
+                        DeconstructFinish(tdcc.thingDef);
+                        DeconstructBuildingsCounter.Remove(tdcc);
+                    }
+                }
+                if (ConstructBuildingsCounter.NullOrEmpty() && DeconstructBuildingsCounter.NullOrEmpty())
+                {
+                    isWorkingOnBuilding = false;
+                }
+            }
+        }
+
         public override void Produce()
         {
         }
-        public void Construct(ThingDef building)
+
+        public void ConstructStart(ThingDef building)
         {
             if (CanConstruct(building))
             {
-                int indexBC = BuildingsCounter.FirstIndexOf((ThingDefCountClass tdcc) => tdcc.thingDef == building);
-                if (indexBC >= 0)
-                {
-                    BuildingsCounter[indexBC].count++;
-                }
-                else
-                {
-                    BuildingsCounter.Add(new ThingDefCountClass(building, 1));
-                }
-                UpdateProducedPower();
+                ConstructBuildingsCounter.Add(new ThingDefCountClass(building, (int)building.GetStatValueAbstract(StatDefOf.WorkToBuild)));
+                isWorkingOnBuilding = true;
                 List<Thing> usedThings = new List<Thing>();
                 if (HaveMinifiedVer(building))
                 {
@@ -107,6 +133,27 @@ namespace VOEPowerGrid
             }
         }
 
+        public void ConstructFinish(ThingDef building)
+        {
+            if (building == ThingDefOfLocal.PowerTransmissionTower)
+            {
+                TransmissionTowerAmount += 1;
+            }
+            else
+            {
+                int indexBC = BuildingsCounter.FirstIndexOf((ThingDefCountClass tdcc) => tdcc.thingDef == building);
+                if (indexBC >= 0)
+                {
+                    BuildingsCounter[indexBC].count++;
+                }
+                else
+                {
+                    BuildingsCounter.Add(new ThingDefCountClass(building, 1));
+                }
+                UpdateProducedPower();
+            }
+        }
+
         public bool HaveMinifiedVer(ThingDef building)
         {
             if (building.Minifiable && this.Things.Any((Thing t) => t is MinifiedThing ts ? ts.InnerThing.def == building : false))
@@ -121,7 +168,7 @@ namespace VOEPowerGrid
             {
                 isCostPaid = true;
             }
-            else if (building.BuildableByPlayer)
+            else if (building.BuildableByPlayer || building == ThingDefOfLocal.PowerTransmissionTower)
             {
                 List<ThingDefCountClass> costToMake = BuildingCost(building);
                 if (costToMake != null && costToMake.Count > 0)
@@ -142,7 +189,7 @@ namespace VOEPowerGrid
             return isCostPaid;
         }
 
-        public void Deconstruct(ThingDef building)
+        public void DeconstructStart(ThingDef building)
         {
             int indexBC = BuildingsCounter.FirstIndexOf((ThingDefCountClass tdcc) => tdcc.thingDef == building);
             if (indexBC >= 0)
@@ -151,30 +198,47 @@ namespace VOEPowerGrid
                 if (BuildingsCounter[indexBC].count < 1)
                     BuildingsCounter.RemoveAt(indexBC);
                 UpdateProducedPower();
-                if (building.Minifiable)
+                DeconstructBuildingsCounter.Add(new ThingDefCountClass(building, (int)Mathf.Clamp(building.GetStatValueAbstract(StatDefOf.WorkToBuild), 20f, 3000f)));
+                isWorkingOnBuilding = true;
+            }
+            else if (building == ThingDefOfLocal.PowerTransmissionTower)
+            {
+                TransmissionTowerAmount -= 1;
+                DeconstructBuildingsCounter.Add(new ThingDefCountClass(building, (int)Mathf.Clamp(building.GetStatValueAbstract(StatDefOf.WorkToBuild), 20f, 3000f)));
+                isWorkingOnBuilding = true;
+            }
+            else
+            {
+                Log.Error("No building " + building.label + " exist");
+                return;
+            }
+        }
+
+        public void DeconstructFinish(ThingDef building)
+        {
+            if (building.Minifiable)
+            {
+                AddItem(MinifyUtility.MakeMinified(ThingMaker.MakeThing(building)));
+            }
+            else
+            {
+                List<ThingDefCountClass> deconstructionAmount = BuildingCost(building);
+                foreach (ThingDefCountClass tdcc in deconstructionAmount)
                 {
-                    AddItem(MinifyUtility.MakeMinified(ThingMaker.MakeThing(building)));
-                }
-                else
-                {
-                    List<ThingDefCountClass> deconstructionAmount = BuildingCost(building);
-                    foreach (ThingDefCountClass tdcc in deconstructionAmount)
+                    int dCount = Mathf.Min(GenMath.RoundRandom((float)tdcc.count * building.resourcesFractionWhenDeconstructed), tdcc.count);
+                    if (dCount > 0)
                     {
-                        IEnumerable<Thing> deconstructionThings = Utils.Make(tdcc.thingDef, Mathf.Min(GenMath.RoundRandom((float)tdcc.count * building.resourcesFractionWhenDeconstructed), tdcc.count));
+                        IEnumerable<Thing> deconstructionThings = Utils.Make(tdcc.thingDef, dCount);
                         foreach (Thing t in deconstructionThings)
                             AddItem(t);
                     }
                 }
             }
-            else
-            {
-                Log.Error("No building " + building.label + " exist");
-            }
         }
 
         public List<ThingDefCountClass> BuildingCost(ThingDef building)
         {
-            return building.BuildableByPlayer ? building.CostList.Select((ThingDefCountClass tdcc) => new ThingDefCountClass() { thingDef = tdcc.thingDef, count = tdcc.count }).ToList() : building.Minifiable ? new List<ThingDefCountClass>() { new ThingDefCountClass() { thingDef = building.minifiedDef, count = 1 } } : new List<ThingDefCountClass>();
+            return (building.BuildableByPlayer || building == ThingDefOfLocal.PowerTransmissionTower) ? building.CostList.Select((ThingDefCountClass tdcc) => new ThingDefCountClass() { thingDef = tdcc.thingDef, count = tdcc.count }).ToList() : building.Minifiable ? new List<ThingDefCountClass>() { new ThingDefCountClass() { thingDef = building.minifiedDef, count = 1 } } : new List<ThingDefCountClass>();
         }
 
         public virtual float MaxPowerProducedByBuilding(ConstructionOption co)
@@ -197,7 +261,7 @@ namespace VOEPowerGrid
             {
                 action = delegate
                 {
-                    Find.WindowStack.Add(new FloatMenu(PowerGridExt.ConstructionOptions.Select(delegate (ConstructionOption co)
+                    List<FloatMenuOption> FMO = PowerGridExt.ConstructionOptions.Select(delegate (ConstructionOption co)
                     {
                         if (AllPawns.Where((Pawn p) => !p.Dead && p.RaceProps.Humanlike).Max((Pawn p) => p.skills.GetSkill(SkillDefOf.Construction).Level) < co.MinConstructionSkill)
                         {
@@ -219,35 +283,60 @@ namespace VOEPowerGrid
                         {
                             return new FloatMenuOption(co.BuildingDef.label + " [" + co.ConstructionSkillsPerOne.ToStringSafe() + "] +" + MaxPowerProducedByBuilding(co).ToStringSafe() + " :\n" + string.Join("\n", BuildingCost(co.BuildingDef).Select((ThingDefCountClass tdcc) => tdcc.Label)), delegate
                             {
-                                Construct(co.BuildingDef);
+                                ConstructStart(co.BuildingDef);
                             }, shownItemForIcon: co.BuildingDef);
                         }
                     })
-                        .ToList()));
+                        .ToList();
+                    if (!CanConstruct(ThingDefOfLocal.PowerTransmissionTower))
+                    {
+                        FMO.Add(new FloatMenuOption("VOEPowerGrid.ConstructionMaterialCostTooHigh".Translate(string.Join("\n", BuildingCost(ThingDefOfLocal.PowerTransmissionTower).Select((ThingDefCountClass tdcc) => tdcc.Label))).RawText, action: null, shownItemForIcon: ThingDefOfLocal.PowerTransmissionTower));
+                    }
+                    else
+                    {
+                        FMO.Add(new FloatMenuOption(ThingDefOfLocal.PowerTransmissionTower.label + " +" + VOEPowerGrid_Mod.Settings.TransmissionTowerRange.ToStringSafe() + " " + "VOEPowerGrid.PowerRange".Translate().RawText + " :\n" + string.Join("\n", BuildingCost(ThingDefOfLocal.PowerTransmissionTower).Select((ThingDefCountClass tdcc) => tdcc.Label)), delegate
+                        {
+                            ConstructStart(ThingDefOfLocal.PowerTransmissionTower);
+                        }, shownItemForIcon: ThingDefOfLocal.PowerTransmissionTower));
+                    }
+                    Find.WindowStack.Add(new FloatMenu(FMO));
                 },
                 defaultLabel = "VOEPowerGrid.Construct.Label".Translate().RawText,
                 defaultDesc = "VOEPowerGrid.Construct.Desc".Translate().RawText,
-                icon = ContentFinder<Texture2D>.Get("UI/Designators/HomeAreaOn"),
-                disabled = currentStructureAmount >= maxStructureAmount,
-                disabledReason = "VOEPowerGrid.Construct.Reason".Translate().RawText
+                icon = ContentFinder<Texture2D>.Get("UI/Designators/HomeAreaOn")
             };
             yield return new Command_Action
             {
                 action = delegate
                 {
-                    Find.WindowStack.Add(new FloatMenu(BuildingsCounter.Select(delegate (ThingDefCountClass tdcc)
+                    List<FloatMenuOption> FMO = BuildingsCounter.Select(delegate (ThingDefCountClass tdcc)
                     {
                         return new FloatMenuOption(tdcc.count.ToStringSafe() + " " + tdcc.thingDef.label.ToStringSafe(), delegate
                         {
-                            Deconstruct(tdcc.thingDef);
+                            DeconstructStart(tdcc.thingDef);
                         }, shownItemForIcon: tdcc.thingDef);
                     })
-                        .ToList()));
+                        .ToList();
+                    if (TransmissionTowerAmount > 0)
+                    {
+                        if (Outlet != null && PowerNetworkRange <= Find.WorldGrid.TraversalDistanceBetween(Tile, Outlet.Tile))
+                        {
+                            FMO.Add(new FloatMenuOption("VOEPowerGrid.AllPowerTransmissionTowerUsed".Translate().RawText, action: null, shownItemForIcon: ThingDefOfLocal.PowerTransmissionTower));
+                        }
+                        else
+                        {
+                            FMO.Add(new FloatMenuOption(((PowerNetworkRange - (Outlet != null ? Find.WorldGrid.TraversalDistanceBetween(Tile, Outlet.Tile) : 0)) / VOEPowerGrid_Mod.Settings.TransmissionTowerRange).ToStringSafe() + " " + ThingDefOfLocal.PowerTransmissionTower.label, delegate
+                            {
+                                DeconstructStart(ThingDefOfLocal.PowerTransmissionTower);
+                            }, shownItemForIcon: ThingDefOfLocal.PowerTransmissionTower));
+                        }
+                    }
+                    Find.WindowStack.Add(new FloatMenu(FMO));
                 },
                 defaultLabel = "VOEPowerGrid.Deconstruct.Label".Translate().RawText,
                 defaultDesc = "VOEPowerGrid.Deconstruct.Desc".Translate().RawText,
                 icon = ContentFinder<Texture2D>.Get("UI/Designators/HomeAreaOff"),
-                disabled = BuildingsCounter.NullOrEmpty(),
+                disabled = BuildingsCounter.NullOrEmpty() && TransmissionTowerAmount <= 0,
                 disabledReason = "VOEPowerGrid.Deconstruct.Reason".Translate().RawText
             };
         }
@@ -256,7 +345,11 @@ namespace VOEPowerGrid
         {
             base.ExposeData();
             Scribe_Collections.Look(ref BuildingsCounter, "BuildingsCounter", LookMode.Deep);
+            Scribe_Collections.Look(ref ConstructBuildingsCounter, "ConstructBuildingsCounter", LookMode.Deep);
+            Scribe_Collections.Look(ref DeconstructBuildingsCounter, "DeconstructBuildingsCounter", LookMode.Deep);
+            Scribe_Values.Look(ref isWorkingOnBuilding, "isWorkingOnBuilding");
             Scribe_Values.Look(ref cashedProducedPower, "cashedProducedPower");
+            Scribe_Values.Look(ref TransmissionTowerAmount, "TransmissionTowerAmount");
             Scribe_References.Look(ref outlet, "outlet");
         }
 
@@ -276,7 +369,7 @@ namespace VOEPowerGrid
             {
                 return "";
             }
-            return "VOEPowerGrid.Base.ProductionString".Translate(isNotConnected ? "VOEPowerGrid.Outlet.NotConnected".Translate().RawText : "VOEPowerGrid.Outlet.Connected".Translate(outlet.Map.Parent.Label).RawText, currentStructureAmount.ToStringSafe(), maxStructureAmount.ToStringSafe(), ProducedPower.ToStringSafe()).RawText;
+            return "VOEPowerGrid.Base.ProductionString".Translate(isNotConnected ? "VOEPowerGrid.Outlet.NotConnected".Translate().RawText : "VOEPowerGrid.Outlet.Connected".Translate(outlet.Map.Parent.Label).RawText, currentStructureAmount.ToStringSafe(), maxStructureAmount.ToStringSafe(), PowerNetworkRange.ToStringSafe(), TransmissionTowerAmount.ToStringSafe(), ProducedPower.ToStringSafe()).RawText + ((ConstructBuildingsCounter.Count() > 0) ? "VOEPowerGrid.Base.ConstructionString".Translate(string.Join("\n", ConstructBuildingsCounter.Select((ThingDefCountClass tdcc) => tdcc.thingDef.label + " " + tdcc.count.ToStringTicksToPeriodVerbose().Colorize(ColoredText.DateTimeColor)))).RawText : "") + ((DeconstructBuildingsCounter.Count() > 0) ? "VOEPowerGrid.Base.DeconstructionString".Translate(string.Join("\n", DeconstructBuildingsCounter.Select((ThingDefCountClass tdcc) => tdcc.thingDef.label + " " + tdcc.count.ToStringTicksToPeriodVerbose().Colorize(ColoredText.DateTimeColor)))).RawText : "");
         }
     }
 }

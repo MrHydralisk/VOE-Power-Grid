@@ -9,6 +9,7 @@
 						<BuildingDef>VFEA_AncientSolarGenerator</BuildingDef>
 						<ConstructionSkillsPerOne>0.5</ConstructionSkillsPerOne>
 						<MinConstructionSkill>6</MinConstructionSkill>
+						<FullSunPower>300</FullSunPower>
 					</li>
 				</value>
 			</li>

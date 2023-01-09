@@ -92,6 +92,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ConstructionOption.cs" />
     <Compile Include="TexOutposts.cs" />
+    <Compile Include="ThingDefOfLocal.cs" />
+    <Compile Include="VOEPowerGrid_Mod.cs" />
+    <Compile Include="VOEPowerGrid_Settings.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
