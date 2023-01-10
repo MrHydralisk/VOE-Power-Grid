@@ -10,16 +10,16 @@
   <description>Power plant outpost types for Vanilla Outposts Expanded</description>
   <modDependencies>
     <li>
-	  <packageId>OskarPotocki.VanillaFactionsExpanded.Core</packageId>
-	  <displayName>Vanilla Expanded Framework</displayName>
-	  <steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=1854607105</steamWorkshopUrl>
-	</li>
+      <packageId>OskarPotocki.VanillaFactionsExpanded.Core</packageId>
+      <displayName>Vanilla Expanded Framework</displayName>
+      <steamWorkshopUrl>https://steamcommunity.com/sharedfiles/filedetails/?id=1854607105</steamWorkshopUrl>
+    </li>
   </modDependencies>
   <loadAfter>
-	<li>Ludeon.RimWorld</li>
-	<li>brrainz.harmony</li>
-	<li>OskarPotocki.VanillaFactionsExpanded.Core</li>
-	<li>vanillaexpanded.outposts</li>
-	<li>MrHydralisk.VOEAdditionalOutposts</li>
+    <li>Ludeon.RimWorld</li>
+    <li>brrainz.harmony</li>
+    <li>OskarPotocki.VanillaFactionsExpanded.Core</li>
+    <li>vanillaexpanded.outposts</li>
+    <li>MrHydralisk.VOEAdditionalOutposts</li>
   </loadAfter>
 </ModMetaData>

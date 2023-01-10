@@ -105,7 +105,7 @@
     </modExtensions>
   </WorldObjectDef>
 
-    <WorldObjectDef ParentName="OutpostBase">
+  <WorldObjectDef ParentName="OutpostBase">
     <defName>Outpost_PowerGrid_Geothermal_Generator</defName>
     <label>geothermal generators power grid</label>
     <description>Places a temporary, autonomously-led camp that specializes in generating power with geothermal generators. Constantly providing it to faction's primary colony.</description>

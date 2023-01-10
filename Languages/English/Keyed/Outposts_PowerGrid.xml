@@ -12,9 +12,9 @@
     <VOEPowerGrid.MaxSkillTooLow>No colonist with high enough skill. Require {0}. Current {1}</VOEPowerGrid.MaxSkillTooLow>
     <VOEPowerGrid.ConstructionSkillCostTooHigh>Capacity too low, structure cost {0}</VOEPowerGrid.ConstructionSkillCostTooHigh>
     <VOEPowerGrid.ConstructionMaterialCostTooHigh>Not enough materials, structure cost:\n{0}</VOEPowerGrid.ConstructionMaterialCostTooHigh>
-    <VOEPowerGrid.ResearchNotFinished>Research not finished</VOEPowerGrid.ResearchNotFinished>    
-    <VOEPowerGrid.PowerRange>Range</VOEPowerGrid.PowerRange>    
-    <VOEPowerGrid.AllPowerTransmissionTowerUsed>All power transmission towers are already in use</VOEPowerGrid.AllPowerTransmissionTowerUsed>    
+    <VOEPowerGrid.ResearchNotFinished>Research not finished</VOEPowerGrid.ResearchNotFinished>
+    <VOEPowerGrid.PowerRange>Range</VOEPowerGrid.PowerRange>
+    <VOEPowerGrid.AllPowerTransmissionTowerUsed>All power transmission towers are already in use</VOEPowerGrid.AllPowerTransmissionTowerUsed>
 
     <VOEPowerGrid.Settings.Title>Vanilla Outposts Expanded: Power Grid</VOEPowerGrid.Settings.Title>
     <VOEPowerGrid.Settings.PowerMultiplier>Power Multiplier</VOEPowerGrid.Settings.PowerMultiplier>
@@ -32,7 +32,7 @@
     <VOEPowerGrid.Outlet.AlreadyConnected>Outpost {0} already connected to outlet</VOEPowerGrid.Outlet.AlreadyConnected>
     <VOEPowerGrid.Outlet.PowerRangeNotEnough>Outpost {0} has insufficient power transmission range {1}/{2}</VOEPowerGrid.Outlet.PowerRangeNotEnough>
     <VOEPowerGrid.Outlet.Connect.Reason>No Power Grid to connect</VOEPowerGrid.Outlet.Connect.Reason>
-    
+
     <VOEPowerGrid.MustBeMade.River>Must be made on river</VOEPowerGrid.MustBeMade.River>
     <VOEPowerGrid.MustBeMade.Coast>Must be made on coast</VOEPowerGrid.MustBeMade.Coast>
 </LanguageData>

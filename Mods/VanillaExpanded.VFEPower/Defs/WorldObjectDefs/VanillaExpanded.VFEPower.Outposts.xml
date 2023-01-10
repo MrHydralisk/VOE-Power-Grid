@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-  
+
   <WorldObjectDef ParentName="OutpostBase">
     <defName>Outpost_PowerGrid_Tidal_Generator</defName>
     <label>tidal generators power grid</label>

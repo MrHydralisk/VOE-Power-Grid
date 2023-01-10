@@ -7,9 +7,9 @@
 				<xpath>Defs/WorldObjectDef[defName ="Outpost_PowerGrid_PowerCell"]/modExtensions/li[@Class="VOEPowerGrid.OutpostExtension_PowerGrid"]/ConstructionOptions</xpath>
 				<value>
 					<li>
-						<BuildingDef>MPC_MechanoidPowerCell</BuildingDef>
-						<ConstructionSkillsPerOne>4</ConstructionSkillsPerOne>
-						<MinConstructionSkill>8</MinConstructionSkill>
+						<BuildingDef>UnstablePowerCell</BuildingDef>
+						<ConstructionSkillsPerOne>0.5</ConstructionSkillsPerOne>
+						<MinConstructionSkill>2</MinConstructionSkill>
 					</li>
 				</value>
 			</li>
