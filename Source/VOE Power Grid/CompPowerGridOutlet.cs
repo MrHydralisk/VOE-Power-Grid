@@ -11,7 +11,7 @@ namespace VOEPowerGrid
     {
         private Outpost_PowerGrid outpostPowerGrid;
         public Outpost_PowerGrid OutpostPowerGrid => outpostPowerGrid;
-        private float powerLossDueToRange = 1f;
+        private float powerLossDueToRange;
         protected override float DesiredPowerOutput => outpostPowerGrid?.ProducedPower ?? 0f;
         public override void PostDestroy(DestroyMode mode, Map previousMap)
         {
@@ -23,7 +23,7 @@ namespace VOEPowerGrid
         {
             outpostPowerGrid?.SetNewOutlet(null);
             outpostPowerGrid = null;
-            powerLossDueToRange = 1f;
+            powerLossDueToRange = 0;
 #if v1_3
             UpdateDesiredPowerOutput1_3();
 #elif v1_4
@@ -58,8 +58,8 @@ namespace VOEPowerGrid
                             {
                                 outpostPowerGrid?.SetNewOutlet(null);
                                 outpostPowerGrid = opd;
-                                outpostPowerGrid?.SetNewOutlet(this.parent);
                                 powerLossDueToRange = VOEPowerGrid_Mod.Settings.PowerLossPerTiles > 0 ? Mathf.Min(1f, Mathf.Max(0f, ((Find.WorldGrid.TraversalDistanceBetween(this.parent.Tile, opd.Tile) / (float)VOEPowerGrid_Mod.Settings.PowerLossPerTiles) - 1f) / 100)) : 0f;
+                                outpostPowerGrid?.SetNewOutlet(this.parent);
                             }, itemIcon: opd.ExpandingIcon, iconColor: opd.ExpandingIconColor);
                         }                    
                     })
