@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <Outpost_PowerGrid_Watermill_Generator.label>Гидроэлектростанция</Outpost_PowerGrid_Watermill_Generator.label>
+  <Outpost_PowerGrid_Watermill_Generator.description>Размещает временный автономный лагерь, который специализируется на производстве энергии с помощью водяных генераторов. Постоянно предоставляет её основной колонии фракции.</Outpost_PowerGrid_Watermill_Generator.description>
+
+  <Outpost_PowerGrid_WindTurbine.label>Ветряная электростанция</Outpost_PowerGrid_WindTurbine.label>
+  <Outpost_PowerGrid_WindTurbine.description>Размещает временный автономный лагерь, который специализируется на производстве энергии с помощью ветрогенераторов. Постоянно предоставляет её основной колонии фракции.</Outpost_PowerGrid_WindTurbine.description>
+
+  <Outpost_PowerGrid_Solar_Generator.label>Солнечная электростанция</Outpost_PowerGrid_Solar_Generator.label>
+  <Outpost_PowerGrid_Solar_Generator.description>Размещает временный автономный лагерь, который специализируется на производстве энергии с помощью солнечных батарей. Постоянно предоставляет её основной колонии фракции.</Outpost_PowerGrid_Solar_Generator.description>
+
+  <Outpost_PowerGrid_Geothermal_Generator.label>Геотермальная электростанция</Outpost_PowerGrid_Geothermal_Generator.label>
+  <Outpost_PowerGrid_Geothermal_Generator.description>Размещает временный автономный лагерь, который специализируется на производстве энергии с помощью геотермальных генераторов. Постоянно предоставляет её основной колонии фракции.</Outpost_PowerGrid_Geothermal_Generator.description>
+
+  <Outpost_PowerGrid_PowerCell.label>Сеть энергоядер</Outpost_PowerGrid_PowerCell.label>
+  <Outpost_PowerGrid_PowerCell.description>Размещает временный автономный лагерь, который специализируется на производстве энергии с помощью энергоячеек и энергоядер. Постоянно предоставляет её основной колонии фракции.</Outpost_PowerGrid_PowerCell.description>
+
+  <Outpost_PowerGrid_Tidal_Generator.label>Приливная электростанция</Outpost_PowerGrid_Tidal_Generator.label>
+  <Outpost_PowerGrid_Tidal_Generator.description>Размещает временный автономный лагерь, который специализируется на производстве энергии с помощью генераторов приливов. Постоянно предоставляет её основной колонии фракции.</Outpost_PowerGrid_Tidal_Generator.description>
+
+</LanguageData>

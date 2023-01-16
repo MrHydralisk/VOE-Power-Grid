@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <Outpost_PowerGrid_DeliverySpot.label>розетка электростанции</Outpost_PowerGrid_DeliverySpot.label>
+  <Outpost_PowerGrid_DeliverySpot.description>Определяет место для получения передаваемой электроэнергии от электростанции.</Outpost_PowerGrid_DeliverySpot.description>
+
+  <PowerTransmissionTower.label>ЛЭП</PowerTransmissionTower.label>
+  <PowerTransmissionTower.description>Линия электропередачи за пределами колонии.</PowerTransmissionTower.description>
+
+</LanguageData>

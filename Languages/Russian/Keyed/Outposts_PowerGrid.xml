@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+    <VOEPowerGrid.Construct.Label>Построить</VOEPowerGrid.Construct.Label>
+    <VOEPowerGrid.Construct.Desc>Построить новое строение</VOEPowerGrid.Construct.Desc>
+    <VOEPowerGrid.Construct.Reason>Максимальная вместимость достигнута</VOEPowerGrid.Construct.Reason>
+    <VOEPowerGrid.Deconstruct.Label>Разобрать</VOEPowerGrid.Deconstruct.Label>
+    <VOEPowerGrid.Deconstruct.Desc>Разобрать существующее строение</VOEPowerGrid.Deconstruct.Desc>
+    <VOEPowerGrid.Deconstruct.Reason>Нечего разбирать</VOEPowerGrid.Deconstruct.Reason>
+    <VOEPowerGrid.Base.ProductionString>{0}Вместимость: {1} / {2}\nДальность передачи: {3} [{4}]\nЭнерговыработка: {5}</VOEPowerGrid.Base.ProductionString>
+    <VOEPowerGrid.Base.ConstructionString>\nСтроится:\n{0}</VOEPowerGrid.Base.ConstructionString>
+    <VOEPowerGrid.Base.DeconstructionString>\nРазбирается:\n{0}</VOEPowerGrid.Base.DeconstructionString>
+    <VOEPowerGrid.MaxSkillTooLow>Нет строителя с достаточно высоким навыком. Требуется {0}. Текущий {1}</VOEPowerGrid.MaxSkillTooLow>
+    <VOEPowerGrid.ConstructionSkillCostTooHigh>Недостаточно вместимости, требуется {0}</VOEPowerGrid.ConstructionSkillCostTooHigh>
+    <VOEPowerGrid.ConstructionMaterialCostTooHigh>Недостаточно материалов, требуется:\n{0}</VOEPowerGrid.ConstructionMaterialCostTooHigh>
+    <VOEPowerGrid.ResearchNotFinished>Технология не исследована</VOEPowerGrid.ResearchNotFinished>
+    <VOEPowerGrid.PowerRange>Дальность</VOEPowerGrid.PowerRange>
+    <VOEPowerGrid.AllPowerTransmissionTowerUsed>Все линии электропередачи уже используются</VOEPowerGrid.AllPowerTransmissionTowerUsed>
+
+    <VOEPowerGrid.Settings.PowerMultiplier>Множитель энерговыработки</VOEPowerGrid.Settings.PowerMultiplier>
+    <VOEPowerGrid.Settings.BuildingCapacityPerSkill>Множитель вместимости за уровень навыка: {0}</VOEPowerGrid.Settings.BuildingCapacityPerSkill>
+    <VOEPowerGrid.Settings.BaseBuildingCapacity>Базовая вместимость: {0}</VOEPowerGrid.Settings.BaseBuildingCapacity>
+    <VOEPowerGrid.Settings.PowerLossPerTiles>1% потери энерговыработки за {0} клетки</VOEPowerGrid.Settings.PowerLossPerTiles>
+    <VOEPowerGrid.Settings.TransmissionTowerRange>1 линия электропередачи имеет дальность {0} клеток</VOEPowerGrid.Settings.TransmissionTowerRange>
+
+    <VOEPowerGrid.Outlet.Connected>Подключен к {0}\n</VOEPowerGrid.Outlet.Connected>
+    <VOEPowerGrid.Outlet.PowerLoss>Потеря энерговыработки: {0}\n</VOEPowerGrid.Outlet.PowerLoss>
+    <VOEPowerGrid.Outlet.NotConnected>Не подключен\n</VOEPowerGrid.Outlet.NotConnected>
+    <VOEPowerGrid.Outlet.Disconnect>Отключить от {0}\n</VOEPowerGrid.Outlet.Disconnect>
+    <VOEPowerGrid.Outlet.Connect.Label>Подключить к электростанции</VOEPowerGrid.Outlet.Connect.Label>
+    <VOEPowerGrid.Outlet.Connect.Desc>Подключить к внешнему лагерю с электростанцией</VOEPowerGrid.Outlet.Connect.Desc>
+    <VOEPowerGrid.Outlet.AlreadyConnected>Лагерь {0} уже подключён к розетке</VOEPowerGrid.Outlet.AlreadyConnected>
+    <VOEPowerGrid.Outlet.PowerRangeNotEnough>Лагерь {0} имеет недостаточную дальность электропередачи {1}/{2}</VOEPowerGrid.Outlet.PowerRangeNotEnough>
+    <VOEPowerGrid.Outlet.Connect.Reason>Нет электростанций для подключения</VOEPowerGrid.Outlet.Connect.Reason>
+
+    <VOEPowerGrid.MustBeMade.River>Должен быть расположен на реке</VOEPowerGrid.MustBeMade.River>
+    <VOEPowerGrid.MustBeMade.Coast>Должен быть расположен на берегу</VOEPowerGrid.MustBeMade.Coast>
+
+</LanguageData>

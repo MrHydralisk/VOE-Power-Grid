@@ -27,8 +27,8 @@
     <VOEPowerGrid.Outlet.PowerLoss>Power loss: {0}\n</VOEPowerGrid.Outlet.PowerLoss>
     <VOEPowerGrid.Outlet.NotConnected>Not connected\n</VOEPowerGrid.Outlet.NotConnected>
     <VOEPowerGrid.Outlet.Disconnect>Disconnect from {0}\n</VOEPowerGrid.Outlet.Disconnect>
-    <VOEPowerGrid.Outlet.Connect.Label>Connected to Power Grid</VOEPowerGrid.Outlet.Connect.Label>
-    <VOEPowerGrid.Outlet.Connect.Desc>Connected to an external outpost with Power Grid</VOEPowerGrid.Outlet.Connect.Desc>
+    <VOEPowerGrid.Outlet.Connect.Label>Connect to Power Grid</VOEPowerGrid.Outlet.Connect.Label>
+    <VOEPowerGrid.Outlet.Connect.Desc>Connect to an external outpost with Power Grid</VOEPowerGrid.Outlet.Connect.Desc>
     <VOEPowerGrid.Outlet.AlreadyConnected>Outpost {0} already connected to outlet</VOEPowerGrid.Outlet.AlreadyConnected>
     <VOEPowerGrid.Outlet.PowerRangeNotEnough>Outpost {0} has insufficient power transmission range {1}/{2}</VOEPowerGrid.Outlet.PowerRangeNotEnough>
     <VOEPowerGrid.Outlet.Connect.Reason>No Power Grid to connect</VOEPowerGrid.Outlet.Connect.Reason>
