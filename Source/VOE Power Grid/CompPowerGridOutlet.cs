@@ -13,10 +13,21 @@ namespace VOEPowerGrid
         public Outpost_PowerGrid OutpostPowerGrid => outpostPowerGrid;
         private float powerLossDueToRange;
         protected override float DesiredPowerOutput => outpostPowerGrid?.ProducedPower ?? 0f;
+
         public override void PostDestroy(DestroyMode mode, Map previousMap)
         {
             outpostPowerGrid?.SetNewOutlet(null);
             base.PostDestroy(mode, previousMap);
+        }
+
+        public override void SetUpPowerVars()
+        {
+            base.SetUpPowerVars();
+#if v1_3
+               UpdateDesiredPowerOutput1_3();
+#elif v1_4
+            UpdateDesiredPowerOutput();
+#endif
         }
 
         public void Disconnect()
