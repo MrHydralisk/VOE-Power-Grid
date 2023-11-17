@@ -19,6 +19,9 @@
     <VOEPowerGrid.AllPowerTransmissionTowerUsed>Все линии электропередачи уже используются</VOEPowerGrid.AllPowerTransmissionTowerUsed>
 
     <VOEPowerGrid.PowerGridTab>Электростанция</VOEPowerGrid.PowerGridTab>
+    
+    <VOEPowerGrid.Letters.ActiveBuildingReset.Label>Перегрузка {0} электростанции</VOEPowerGrid.Letters.ActiveBuildingReset.Label>
+    <VOEPowerGrid.Letters.ActiveBuildingReset.Text>Активные строения в электростанции были перегружены, из-за нехватки вместимости для их содержания. Некоторые строения были автоматически отключены для возврата к безопасной нагрузке.</VOEPowerGrid.Letters.ActiveBuildingReset.Text>
 
     <VOEPowerGrid.Settings.PowerMultiplier>Множитель энерговыработки</VOEPowerGrid.Settings.PowerMultiplier>
     <VOEPowerGrid.Settings.BuildingCapacityPerSkill>Множитель вместимости за уровень навыка: {0}</VOEPowerGrid.Settings.BuildingCapacityPerSkill>

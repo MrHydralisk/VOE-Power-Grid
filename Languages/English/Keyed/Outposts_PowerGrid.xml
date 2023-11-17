@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
+
     <VOEPowerGrid.Construct.Label>Construct</VOEPowerGrid.Construct.Label>
     <VOEPowerGrid.Construct.Desc>Construct new building</VOEPowerGrid.Construct.Desc>
     <VOEPowerGrid.Construct.Reason>Maximum capacity reached</VOEPowerGrid.Construct.Reason>
@@ -18,6 +19,9 @@
     <VOEPowerGrid.AllPowerTransmissionTowerUsed>All power transmission towers are already in use</VOEPowerGrid.AllPowerTransmissionTowerUsed>
 
     <VOEPowerGrid.PowerGridTab>Power Grid</VOEPowerGrid.PowerGridTab>
+    
+    <VOEPowerGrid.Letters.ActiveBuildingReset.Label>Overload of {0} Power Grid</VOEPowerGrid.Letters.ActiveBuildingReset.Label>
+    <VOEPowerGrid.Letters.ActiveBuildingReset.Text>Active buildings in Power Grid have been overloaded, due to lack of capacity for maintenance. Some buildings were automatically shut down to return to safe capacity.</VOEPowerGrid.Letters.ActiveBuildingReset.Text>
 
     <VOEPowerGrid.Settings.Title>Vanilla Outposts Expanded: Power Grid</VOEPowerGrid.Settings.Title>
     <VOEPowerGrid.Settings.PowerMultiplier>Power Multiplier</VOEPowerGrid.Settings.PowerMultiplier>
@@ -38,4 +42,5 @@
 
     <VOEPowerGrid.MustBeMade.River>Must be made on river</VOEPowerGrid.MustBeMade.River>
     <VOEPowerGrid.MustBeMade.Coast>Must be made on coast</VOEPowerGrid.MustBeMade.Coast>
+
 </LanguageData>

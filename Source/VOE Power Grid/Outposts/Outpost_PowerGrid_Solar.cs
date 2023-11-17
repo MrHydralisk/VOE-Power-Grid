@@ -11,7 +11,7 @@ namespace VOEPowerGrid
         private int ticksSinceSkyUpdate;
         public override void UpdateProducedPower()
         {
-            recashProducedPower(ActiveBuildingsCounter.Count() > 0 ? ActiveBuildingsCounter.Sum((ThingDefCountClass tdcc) => Mathf.Lerp(GetConstructionOption(tdcc.thingDef).NightPower, GetConstructionOption(tdcc.thingDef).FullSunPower, Outlet?.Map.skyManager.CurSkyGlow ?? 1f) * tdcc.count) * PowerMultiplier : 0f);
+            RecashProducedPower(ActiveBuildingsCounter.Count() > 0 ? ActiveBuildingsCounter.Sum((ThingDefCountClass tdcc) => Mathf.Lerp(GetConstructionOption(tdcc.thingDef).NightPower, GetConstructionOption(tdcc.thingDef).FullSunPower, Outlet?.Map.skyManager.CurSkyGlow ?? 1f) * tdcc.count) * PowerMultiplier : 0f);
             if (Outlet != null)
             {
 #if v1_3

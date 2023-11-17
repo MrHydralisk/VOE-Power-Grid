@@ -12,7 +12,7 @@ namespace VOEPowerGrid
         [PostToSetings("VOEPowerGrid.Settings.PowerMultiplier", PostToSetingsAttribute.DrawMode.Percentage, 1f, 0.1f, 5f, null, null)]
         public float PowerMultiplier = 1f;
 
-        public float currentStructureAmount => (ActiveBuildingsCounter.Count() > 0 ? ActiveBuildingsCounter.Sum((ThingDefCountClass tdcc) => tdcc.count * PowerGridExt.ConstructionOptions.FirstOrDefault((ConstructionOption co) => co.BuildingDef == tdcc.thingDef).ConstructionSkillsPerOne) : 0f) /*+ (ConstructBuildingsCounter.Count() > 0 ? ConstructBuildingsCounter.Where((ThingDefCountClass tdcc) => tdcc.thingDef != ThingDefOfLocal.PowerTransmissionTower).Sum((ThingDefCountClass tdcc) => PowerGridExt.ConstructionOptions.FirstOrDefault((ConstructionOption co) => co.BuildingDef == tdcc.thingDef).ConstructionSkillsPerOne) : 0f)*/;
+        public float currentStructureAmount => (ActiveBuildingsCounter.Count() > 0 ? ActiveBuildingsCounter.Sum((ThingDefCountClass tdcc) => tdcc.count * PowerGridExt.ConstructionOptions.FirstOrDefault((ConstructionOption co) => co.BuildingDef == tdcc.thingDef).ConstructionSkillsPerOne) : 0f);
         public float maxStructureAmount => VOEPowerGrid_Mod.Settings.BaseBuildingCapacity + TotalSkill(SkillDefOf.Construction) * VOEPowerGrid_Mod.Settings.BuildingCapacityPerSkill;
 
         protected OutpostExtension_Choose ChooseExt => base.Ext as OutpostExtension_Choose;
@@ -45,6 +45,7 @@ namespace VOEPowerGrid
         {
             return PowerGridExt.ConstructionOptions.FirstOrDefault((ConstructionOption co) => co.BuildingDef == thingDef);
         }
+
         public void SetNewOutlet(ThingWithComps outletThing)
         {
             outlet = outletThing;
@@ -53,13 +54,15 @@ namespace VOEPowerGrid
                 UpdateProducedPower();
             }
         }
-        public void recashProducedPower(float pp)
+
+        public void RecashProducedPower(float pp)
         {
             cashedProducedPower = pp;
         }
+
         public virtual void UpdateProducedPower()
         {
-            recashProducedPower(ActiveBuildingsCounter.Count() > 0 ? ActiveBuildingsCounter.Sum((ThingDefCountClass tdcc) => -tdcc.thingDef.GetCompProperties<CompProperties_Power>().
+            RecashProducedPower(ActiveBuildingsCounter.Count() > 0 ? ActiveBuildingsCounter.Sum((ThingDefCountClass tdcc) => -tdcc.thingDef.GetCompProperties<CompProperties_Power>().
 #if v1_3
             basePowerConsumption
 #elif v1_4
@@ -73,6 +76,33 @@ namespace VOEPowerGrid
 #elif v1_4
                 Outlet.GetComp<CompPowerGridOutlet>().UpdateDesiredPowerOutput();
 #endif
+            }
+        }
+
+        public override void RecachePawnTraits()
+        {
+            base.RecachePawnTraits();
+            CheckStructureAmount();
+        }
+
+        public void CheckStructureAmount()
+        {
+            if (currentStructureAmount > maxStructureAmount)
+            {
+                while (currentStructureAmount > maxStructureAmount)
+                {
+                    ThingDefCountClass activeTDCC = ActiveBuildingsCounter.FirstOrDefault((ThingDefCountClass tdcc) => tdcc.count > 0);
+                    if (activeTDCC != null)
+                    {
+                        activeTDCC.count--;
+                    }
+                    else
+                    {
+                        break;
+                    }
+                }
+                UpdateProducedPower();
+                Find.LetterStack.ReceiveLetter("VOEPowerGrid.Letters.ActiveBuildingReset.Label".Translate(Name), "VOEPowerGrid.Letters.ActiveBuildingReset.Text".Translate(), LetterDefOf.NeutralEvent);
             }
         }
 
@@ -375,7 +405,7 @@ namespace VOEPowerGrid
 
         public override void Destroy()
         {
-            recashProducedPower(0f);
+            RecashProducedPower(0f);
             if (Outlet != null)
             {
                 Outlet.GetComp<CompPowerGridOutlet>().Disconnect();
