@@ -300,6 +300,7 @@ namespace VOEPowerGrid
 #endif 
                 * PowerMultiplier;
         }
+
         public override IEnumerable<Gizmo> GetGizmos()
         {
             foreach (Gizmo gizmo in base.GetGizmos())
@@ -401,6 +402,12 @@ namespace VOEPowerGrid
             Scribe_Values.Look(ref cashedProducedPower, "cashedProducedPower");
             Scribe_Values.Look(ref TransmissionTowerAmount, "TransmissionTowerAmount");
             Scribe_References.Look(ref outlet, "outlet");
+        }
+
+        public override void DrawExtraSelectionOverlays()
+        {
+            base.DrawExtraSelectionOverlays();
+            GenDraw.DrawWorldRadiusRing(this.Tile, PowerNetworkRange);
         }
 
         public override void Destroy()
