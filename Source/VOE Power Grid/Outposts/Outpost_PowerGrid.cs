@@ -31,14 +31,14 @@ namespace VOEPowerGrid
 
         private float cashedProducedPower;
         public virtual float ProducedPower => cashedProducedPower;
-        public List<ThingDefCountClass> BuildingsCounter = new List<ThingDefCountClass>();
-        public List<ThingDefCountClass> ActiveBuildingsCounter = new List<ThingDefCountClass>();
+        public List<ThingDefCountClass> BuildingsCounter => buildingsCounter ?? (buildingsCounter = new List<ThingDefCountClass>());
+        public List<ThingDefCountClass> buildingsCounter;
+        public List<ThingDefCountClass> ActiveBuildingsCounter => activeBuildingsCounter ?? (activeBuildingsCounter = new List<ThingDefCountClass>());
+        public List<ThingDefCountClass> activeBuildingsCounter;
 
         public override void SpawnSetup()
         {
             base.SpawnSetup();
-            if (ActiveBuildingsCounter.NullOrEmpty())
-                ActiveBuildingsCounter = new List<ThingDefCountClass>();
         }
 
         public ConstructionOption GetConstructionOption(ThingDef thingDef)
@@ -394,8 +394,8 @@ namespace VOEPowerGrid
         public override void ExposeData()
         {
             base.ExposeData();
-            Scribe_Collections.Look(ref BuildingsCounter, "BuildingsCounter", LookMode.Deep);
-            Scribe_Collections.Look(ref ActiveBuildingsCounter, "ActiveBuildingsCounter", LookMode.Deep);
+            Scribe_Collections.Look(ref buildingsCounter, "BuildingsCounter", LookMode.Deep);
+            Scribe_Collections.Look(ref activeBuildingsCounter, "activeBuildingsCounter", LookMode.Deep);
             Scribe_Collections.Look(ref ConstructBuildingsCounter, "ConstructBuildingsCounter", LookMode.Deep);
             Scribe_Collections.Look(ref DeconstructBuildingsCounter, "DeconstructBuildingsCounter", LookMode.Deep);
             Scribe_Values.Look(ref isWorkingOnBuilding, "isWorkingOnBuilding");
