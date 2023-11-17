@@ -12,7 +12,7 @@ namespace VOEPowerGrid
         private int ticksSinceWeatherUpdate;
         public override void UpdateProducedPower()
         {
-            recashProducedPower(BuildingsCounter.Count() > 0 ? BuildingsCounter.Sum((ThingDefCountClass tdcc) => -tdcc.thingDef.GetCompProperties<CompProperties_Power>().
+            recashProducedPower(ActiveBuildingsCounter.Count() > 0 ? ActiveBuildingsCounter.Sum((ThingDefCountClass tdcc) => -tdcc.thingDef.GetCompProperties<CompProperties_Power>().
 #if v1_3
             basePowerConsumption
 #elif v1_4

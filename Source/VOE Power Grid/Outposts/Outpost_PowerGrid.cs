@@ -12,7 +12,7 @@ namespace VOEPowerGrid
         [PostToSetings("VOEPowerGrid.Settings.PowerMultiplier", PostToSetingsAttribute.DrawMode.Percentage, 1f, 0.1f, 5f, null, null)]
         public float PowerMultiplier = 1f;
 
-        private float currentStructureAmount => (BuildingsCounter.Count() > 0 ? BuildingsCounter.Sum((ThingDefCountClass tdcc) => tdcc.count * PowerGridExt.ConstructionOptions.FirstOrDefault((ConstructionOption co) => co.BuildingDef == tdcc.thingDef).ConstructionSkillsPerOne) : 0f) + (ConstructBuildingsCounter.Count() > 0 ? ConstructBuildingsCounter.Where((ThingDefCountClass tdcc) => tdcc.thingDef != ThingDefOfLocal.PowerTransmissionTower).Sum((ThingDefCountClass tdcc) => PowerGridExt.ConstructionOptions.FirstOrDefault((ConstructionOption co) => co.BuildingDef == tdcc.thingDef).ConstructionSkillsPerOne) : 0f);
+        public float currentStructureAmount => (ActiveBuildingsCounter.Count() > 0 ? ActiveBuildingsCounter.Sum((ThingDefCountClass tdcc) => tdcc.count * PowerGridExt.ConstructionOptions.FirstOrDefault((ConstructionOption co) => co.BuildingDef == tdcc.thingDef).ConstructionSkillsPerOne) : 0f) /*+ (ConstructBuildingsCounter.Count() > 0 ? ConstructBuildingsCounter.Where((ThingDefCountClass tdcc) => tdcc.thingDef != ThingDefOfLocal.PowerTransmissionTower).Sum((ThingDefCountClass tdcc) => PowerGridExt.ConstructionOptions.FirstOrDefault((ConstructionOption co) => co.BuildingDef == tdcc.thingDef).ConstructionSkillsPerOne) : 0f)*/;
         public float maxStructureAmount => VOEPowerGrid_Mod.Settings.BaseBuildingCapacity + TotalSkill(SkillDefOf.Construction) * VOEPowerGrid_Mod.Settings.BuildingCapacityPerSkill;
 
         protected OutpostExtension_Choose ChooseExt => base.Ext as OutpostExtension_Choose;
@@ -32,6 +32,14 @@ namespace VOEPowerGrid
         private float cashedProducedPower;
         public virtual float ProducedPower => cashedProducedPower;
         public List<ThingDefCountClass> BuildingsCounter = new List<ThingDefCountClass>();
+        public List<ThingDefCountClass> ActiveBuildingsCounter = new List<ThingDefCountClass>();
+
+        public override void SpawnSetup()
+        {
+            base.SpawnSetup();
+            if (ActiveBuildingsCounter.NullOrEmpty())
+                ActiveBuildingsCounter = new List<ThingDefCountClass>();
+        }
 
         public ConstructionOption GetConstructionOption(ThingDef thingDef)
         {
@@ -51,7 +59,7 @@ namespace VOEPowerGrid
         }
         public virtual void UpdateProducedPower()
         {
-            recashProducedPower(BuildingsCounter.Count() > 0 ? BuildingsCounter.Sum((ThingDefCountClass tdcc) => -tdcc.thingDef.GetCompProperties<CompProperties_Power>().
+            recashProducedPower(ActiveBuildingsCounter.Count() > 0 ? ActiveBuildingsCounter.Sum((ThingDefCountClass tdcc) => -tdcc.thingDef.GetCompProperties<CompProperties_Power>().
 #if v1_3
             basePowerConsumption
 #elif v1_4
@@ -142,13 +150,19 @@ namespace VOEPowerGrid
             else
             {
                 int indexBC = BuildingsCounter.FirstIndexOf((ThingDefCountClass tdcc) => tdcc.thingDef == building);
+                int indexABC = ActiveBuildingsCounter.FirstIndexOf((ThingDefCountClass tdcc) => tdcc.thingDef == building);
                 if (indexBC >= 0)
                 {
                     BuildingsCounter[indexBC].count++;
+                    if (currentStructureAmount + PowerGridExt.ConstructionOptions.FirstOrDefault((ConstructionOption co) => co.BuildingDef == building).ConstructionSkillsPerOne <= maxStructureAmount)
+                    {
+                        ActiveBuildingsCounter[indexABC].count = Mathf.Min(BuildingsCounter[indexBC].count, ActiveBuildingsCounter[indexABC].count + 1); ;
+                    }
                 }
                 else
                 {
                     BuildingsCounter.Add(new ThingDefCountClass(building, 1));
+                    ActiveBuildingsCounter.Add(new ThingDefCountClass(building, 1));
                 }
                 UpdateProducedPower();
             }
@@ -192,11 +206,16 @@ namespace VOEPowerGrid
         public void DeconstructStart(ThingDef building)
         {
             int indexBC = BuildingsCounter.FirstIndexOf((ThingDefCountClass tdcc) => tdcc.thingDef == building);
+            int indexABC = ActiveBuildingsCounter.FirstIndexOf((ThingDefCountClass tdcc) => tdcc.thingDef == building);
             if (indexBC >= 0)
             {
                 BuildingsCounter[indexBC].count--;
+                ActiveBuildingsCounter[indexABC].count = Mathf.Min(BuildingsCounter[indexBC].count, ActiveBuildingsCounter[indexABC].count);
                 if (BuildingsCounter[indexBC].count < 1)
+                {
                     BuildingsCounter.RemoveAt(indexBC);
+                    ActiveBuildingsCounter.RemoveAt(indexABC);
+                }
                 UpdateProducedPower();
                 DeconstructBuildingsCounter.Add(new ThingDefCountClass(building, (int)Mathf.Clamp(building.GetStatValueAbstract(StatDefOf.WorkToBuild), 20f, 3000f)));
                 isWorkingOnBuilding = true;
@@ -345,6 +364,7 @@ namespace VOEPowerGrid
         {
             base.ExposeData();
             Scribe_Collections.Look(ref BuildingsCounter, "BuildingsCounter", LookMode.Deep);
+            Scribe_Collections.Look(ref ActiveBuildingsCounter, "ActiveBuildingsCounter", LookMode.Deep);
             Scribe_Collections.Look(ref ConstructBuildingsCounter, "ConstructBuildingsCounter", LookMode.Deep);
             Scribe_Collections.Look(ref DeconstructBuildingsCounter, "DeconstructBuildingsCounter", LookMode.Deep);
             Scribe_Values.Look(ref isWorkingOnBuilding, "isWorkingOnBuilding");

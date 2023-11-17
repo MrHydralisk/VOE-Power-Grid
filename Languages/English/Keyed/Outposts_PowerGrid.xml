@@ -9,6 +9,7 @@
     <VOEPowerGrid.Base.ProductionString>{0}Capacity: {1} / {2}\nTransmission range: {3} [{4}]\nPower: {5}</VOEPowerGrid.Base.ProductionString>
     <VOEPowerGrid.Base.ConstructionString>\nConstucting:\n{0}</VOEPowerGrid.Base.ConstructionString>
     <VOEPowerGrid.Base.DeconstructionString>\nDeconstructing:\n{0}</VOEPowerGrid.Base.DeconstructionString>
+    <VOEPowerGrid.Base.AvailableBuildingString>Available Buildings</VOEPowerGrid.Base.AvailableBuildingString>
     <VOEPowerGrid.MaxSkillTooLow>No colonist with high enough skill. Require {0}. Current {1}</VOEPowerGrid.MaxSkillTooLow>
     <VOEPowerGrid.ConstructionSkillCostTooHigh>Capacity too low, structure cost {0}</VOEPowerGrid.ConstructionSkillCostTooHigh>
     <VOEPowerGrid.ConstructionMaterialCostTooHigh>Not enough materials, structure cost:\n{0}</VOEPowerGrid.ConstructionMaterialCostTooHigh>

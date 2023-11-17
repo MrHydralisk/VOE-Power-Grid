@@ -23,20 +23,26 @@ namespace VOEPowerGrid
         protected override void FillTab()
         {
             Text.Font = GameFont.Small;
-            Rect outRect = new Rect(0f, 0f, size.x, size.y).ContractedBy(10f);
-            //Widgets.DrawBoxSolid(outRect, Color.black);
-            Rect viewRect = new Rect(0f, 0f, outRect.width - 16f, scrollViewHeight);
-            //Widgets.DrawBoxSolid(viewRect, Color.gray);
-            //Rect rect = new Rect(0f, 0f, outRect.width - 16f, Mathf.Max(scrollViewHeight, outRect.height));
-            Widgets.BeginScrollView(outRect, ref scrollPosition, viewRect);
+            Rect outRect = new Rect(0f, 0f, size.x, size.y);
             float curY = 0f;
-            DoRows(ref curY, viewRect);
-            //DoRows(ref curY, rect);
+            Text.Anchor = TextAnchor.MiddleLeft;
+            Widgets.Label(new Rect(0, curY, outRect.width - 114, 24f), " " + "VOEPowerGrid.Base.AvailableBuildingString".Translate());
+            Text.Anchor = TextAnchor.MiddleCenter;
+            Widgets.Label(new Rect(outRect.width - 114, curY, 76, 24f), SelPowerGrid.currentStructureAmount.ToStringSafe() + " / " + SelPowerGrid.maxStructureAmount.ToStringSafe());
+            curY += 24f;
+            GUI.color = Widgets.SeparatorLineColor;
+            Widgets.DrawLineHorizontal(0f, curY, size.x);
+            curY += 2f;
+            outRect.yMin = curY;
+            Rect viewRect = new Rect(0f, 0f, outRect.width - 16f, scrollViewHeight);
+            Widgets.BeginScrollView(outRect, ref scrollPosition, viewRect);
+            curY = 0f;
+            DoRows(viewRect, ref curY);
             scrollViewHeight = curY;
             Widgets.EndScrollView();
         }
 
-        private void DoRows(ref float curY, Rect scrollOutRect)
+        private void DoRows(Rect scrollOutRect, ref float curY)
         {
             List<ThingDefCountClass> buildings = SelPowerGrid.BuildingsCounter;
             Widgets.BeginGroup(scrollOutRect);
@@ -59,9 +65,32 @@ namespace VOEPowerGrid
 
         protected virtual void DoThingRow(ThingDefCountClass thingDCC, float width, ref float curY)
         {
+            ThingDefCountClass activeBuilding = SelPowerGrid.ActiveBuildingsCounter.FirstOrDefault((ThingDefCountClass tdcc) => tdcc.thingDef == thingDCC.thingDef);
+            if (activeBuilding == null)
+            {
+                SelPowerGrid.ActiveBuildingsCounter.Add(new ThingDefCountClass(thingDCC.thingDef, 0));
+                activeBuilding = SelPowerGrid.ActiveBuildingsCounter.FirstOrDefault((ThingDefCountClass tdcc) => tdcc.thingDef == thingDCC.thingDef);
+            }
             Rect rect = new Rect(0f, curY, width, 28f);
-            //Widgets.DrawBoxSolid(rect, Color.white);
             Widgets.InfoCardButton(rect.width - 24f, curY, thingDCC.thingDef);
+            rect.width -= 24f;
+            Text.Anchor = TextAnchor.MiddleCenter;
+            if (Widgets.ButtonText(new Rect(rect.x + rect.width - 24f, rect.y + (rect.height - 24f) / 2f, 24f, 24f), "+"))
+            {
+                if (SelPowerGrid.currentStructureAmount + SelPowerGrid.PowerGridExt.ConstructionOptions.FirstOrDefault((ConstructionOption co) => co.BuildingDef == thingDCC.thingDef).ConstructionSkillsPerOne <= SelPowerGrid.maxStructureAmount)
+                {
+                    activeBuilding.count = Mathf.Min(thingDCC.count, activeBuilding.count + 1);
+                    SelPowerGrid.UpdateProducedPower();
+                }
+            }
+            rect.width -= 24f;
+            Widgets.Label(new Rect(rect.width - 24f, curY, 24f, rect.height), activeBuilding.count.ToStringSafe());
+            rect.width -= 24f;
+            if (Widgets.ButtonText(new Rect(rect.x + rect.width - 24f, rect.y + (rect.height - 24f) / 2f, 24f, 24f), "-"))
+            {
+                activeBuilding.count = Mathf.Max(0, activeBuilding.count - 1);
+                SelPowerGrid.UpdateProducedPower();
+            }
             rect.width -= 24f;
             if (Mouse.IsOver(rect))
             {
