@@ -16,6 +16,8 @@
     <VOEPowerGrid.PowerRange>Range</VOEPowerGrid.PowerRange>
     <VOEPowerGrid.AllPowerTransmissionTowerUsed>All power transmission towers are already in use</VOEPowerGrid.AllPowerTransmissionTowerUsed>
 
+    <VOEPowerGrid.PowerGridTab>Power Grid</VOEPowerGrid.PowerGridTab>
+
     <VOEPowerGrid.Settings.Title>Vanilla Outposts Expanded: Power Grid</VOEPowerGrid.Settings.Title>
     <VOEPowerGrid.Settings.PowerMultiplier>Power Multiplier</VOEPowerGrid.Settings.PowerMultiplier>
     <VOEPowerGrid.Settings.BuildingCapacityPerSkill>Building Capacity Per Skill: {0}</VOEPowerGrid.Settings.BuildingCapacityPerSkill>

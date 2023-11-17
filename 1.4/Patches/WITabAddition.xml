@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationSequence">
+		<operations>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/WorldObjectDef[defName ="Outpost_PowerGrid_Watermill_Generator" or defName ="Outpost_PowerGrid_WindTurbine" or defName ="Outpost_PowerGrid_Solar_Generator" or defName ="Outpost_PowerGrid_Geothermal_Generator" or defName ="Outpost_PowerGrid_PowerCell" or defName ="Outpost_PowerGrid_Tidal_Generator"]</xpath>
+				<order>Append</order>
+				<value>
+					<inspectorTabs>
+						<li>VOEPowerGrid.WITab_Outpost_PowerGrid</li>
+					</inspectorTabs>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+
+</Patch>

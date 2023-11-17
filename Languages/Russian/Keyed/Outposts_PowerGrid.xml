@@ -17,6 +17,8 @@
     <VOEPowerGrid.PowerRange>Дальность</VOEPowerGrid.PowerRange>
     <VOEPowerGrid.AllPowerTransmissionTowerUsed>Все линии электропередачи уже используются</VOEPowerGrid.AllPowerTransmissionTowerUsed>
 
+    <VOEPowerGrid.PowerGridTab>Электростанция</VOEPowerGrid.PowerGridTab>
+
     <VOEPowerGrid.Settings.PowerMultiplier>Множитель энерговыработки</VOEPowerGrid.Settings.PowerMultiplier>
     <VOEPowerGrid.Settings.BuildingCapacityPerSkill>Множитель вместимости за уровень навыка: {0}</VOEPowerGrid.Settings.BuildingCapacityPerSkill>
     <VOEPowerGrid.Settings.BaseBuildingCapacity>Базовая вместимость: {0}</VOEPowerGrid.Settings.BaseBuildingCapacity>

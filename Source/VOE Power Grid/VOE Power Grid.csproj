@@ -79,22 +79,31 @@
       <HintPath>..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>..\..\..\..\RimWorldWin64_Data\Managed\UnityEngine.TextRenderingModule.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CompPowerGridOutlet.cs" />
     <Compile Include="HarmonyPatches.cs" />
     <Compile Include="OutpostExtension_PowerGrid.cs" />
-    <Compile Include="Outpost_PowerGrid_Tidal.cs" />
-    <Compile Include="Outpost_PowerGrid_WindTurbine.cs" />
-    <Compile Include="Outpost_PowerGrid_Solar.cs" />
-    <Compile Include="Outpost_PowerGrid_Watermill.cs" />
-    <Compile Include="Outpost_PowerGrid.cs" />
+    <Compile Include="Outposts\Outpost_PowerGrid_Tidal.cs" />
+    <Compile Include="Outposts\Outpost_PowerGrid_WindTurbine.cs" />
+    <Compile Include="Outposts\Outpost_PowerGrid_Solar.cs" />
+    <Compile Include="Outposts\Outpost_PowerGrid_Watermill.cs" />
+    <Compile Include="Outposts\Outpost_PowerGrid.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ConstructionOption.cs" />
     <Compile Include="TexOutposts.cs" />
     <Compile Include="ThingDefOfLocal.cs" />
-    <Compile Include="VOEPowerGrid_Mod.cs" />
-    <Compile Include="VOEPowerGrid_Settings.cs" />
+    <Compile Include="Mod\VOEPowerGrid_Mod.cs" />
+    <Compile Include="Mod\VOEPowerGrid_Settings.cs" />
+    <Compile Include="WITab_Outpost_PowerGrid.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
