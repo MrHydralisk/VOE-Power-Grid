@@ -11,6 +11,8 @@
     <VOEPowerGrid.Base.ConstructionString>\nСтроится:\n{0}</VOEPowerGrid.Base.ConstructionString>
     <VOEPowerGrid.Base.DeconstructionString>\nРазбирается:\n{0}</VOEPowerGrid.Base.DeconstructionString>
     <VOEPowerGrid.Base.AvailableBuildingString>Доступные строения</VOEPowerGrid.Base.AvailableBuildingString>
+    <VOEPowerGrid.Base.TerrainCapacityString>Множитель вместимости от местности: {0}</VOEPowerGrid.Base.TerrainCapacityString>
+    <VOEPowerGrid.Base.TerrainPowerString>Множитель энерговыработки от местности: {0}</VOEPowerGrid.Base.TerrainPowerString>
     <VOEPowerGrid.MaxSkillTooLow>Нет строителя с достаточно высоким навыком. Требуется {0}. Текущий {1}</VOEPowerGrid.MaxSkillTooLow>
     <VOEPowerGrid.ConstructionSkillCostTooHigh>Недостаточно вместимости, требуется {0}</VOEPowerGrid.ConstructionSkillCostTooHigh>
     <VOEPowerGrid.ConstructionMaterialCostTooHigh>Недостаточно материалов, требуется:\n{0}</VOEPowerGrid.ConstructionMaterialCostTooHigh>

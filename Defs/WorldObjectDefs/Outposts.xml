@@ -28,6 +28,43 @@
             <MinConstructionSkill>6</MinConstructionSkill>
           </li>
         </ConstructionOptions>
+        <HillinessPower>
+          <li>
+            <key>Flat</key>
+            <value>0.75</value>
+          </li>
+          <li>
+            <key>SmallHills</key>
+            <value>1</value>
+          </li>
+          <li>
+            <key>LargeHills</key>
+            <value>1.25</value>
+          </li>
+          <li>
+            <key>Mountainous</key>
+            <value>1.5</value>
+          </li>
+        </HillinessPower>
+        <RiverCapacity>
+          <li>
+            <key>HugeRiver</key>
+            <value>2</value>
+          </li>
+          <li>
+            <key>LargeRiver</key>
+            <value>1.5</value>
+          </li>
+          <li>
+            <key>River</key>
+            <value>1</value>
+          </li>
+          <li>
+            <key>Creek</key>
+            <value>0.5</value>
+          </li>
+        </RiverCapacity>
+        <CanBuildOnWater>true</CanBuildOnWater>
       </li>
       <li Class="KCSG.CustomGenOption">
         <fullClear>true</fullClear>
@@ -62,6 +99,42 @@
             <MinConstructionSkill>6</MinConstructionSkill>
           </li>
         </ConstructionOptions>
+        <HillinessCapacity>
+          <li>
+            <key>Flat</key>
+            <value>1.25</value>
+          </li>
+          <li>
+            <key>SmallHills</key>
+            <value>1</value>
+          </li>
+          <li>
+            <key>LargeHills</key>
+            <value>1</value>
+          </li>
+          <li>
+            <key>Mountainous</key>
+            <value>0.75</value>
+          </li>
+        </HillinessCapacity>
+        <HillinessPower>
+          <li>
+            <key>Flat</key>
+            <value>0.6</value>
+          </li>
+          <li>
+            <key>SmallHills</key>
+            <value>1</value>
+          </li>
+          <li>
+            <key>LargeHills</key>
+            <value>1.25</value>
+          </li>
+          <li>
+            <key>Mountainous</key>
+            <value>2</value>
+          </li>
+        </HillinessPower>
       </li>
       <li Class="KCSG.CustomGenOption">
         <fullClear>true</fullClear>
@@ -98,6 +171,24 @@
             <NightPower>0</NightPower>
           </li>
         </ConstructionOptions>
+        <HillinessCapacity>
+          <li>
+            <key>Flat</key>
+            <value>1.5</value>
+          </li>
+          <li>
+            <key>SmallHills</key>
+            <value>1.25</value>
+          </li>
+          <li>
+            <key>LargeHills</key>
+            <value>1</value>
+          </li>
+          <li>
+            <key>Mountainous</key>
+            <value>0.75</value>
+          </li>
+        </HillinessCapacity>
       </li>
       <li Class="KCSG.CustomGenOption">
         <fullClear>true</fullClear>
@@ -133,6 +224,24 @@
             <MinConstructionSkill>8</MinConstructionSkill>
           </li>
         </ConstructionOptions>
+        <HillinessCapacity>
+          <li>
+            <key>Flat</key>
+            <value>0.75</value>
+          </li>
+          <li>
+            <key>SmallHills</key>
+            <value>1</value>
+          </li>
+          <li>
+            <key>LargeHills</key>
+            <value>1.25</value>
+          </li>
+          <li>
+            <key>Mountainous</key>
+            <value>1.5</value>
+          </li>
+        </HillinessCapacity>
       </li>
       <li Class="KCSG.CustomGenOption">
         <fullClear>true</fullClear>
@@ -168,6 +277,12 @@
             <MinConstructionSkill>4</MinConstructionSkill>
           </li>
         </ConstructionOptions>
+        <HillinessCapacity>
+          <li>
+            <key>Flat</key>
+            <value>1.5</value>
+          </li>
+        </HillinessCapacity>
       </li>
       <li Class="KCSG.CustomGenOption">
         <fullClear>true</fullClear>

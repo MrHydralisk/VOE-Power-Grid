@@ -29,6 +29,18 @@
             <MinConstructionSkill>6</MinConstructionSkill>
           </li>
         </ConstructionOptions>
+        <BiomePower>
+          <li>
+            <key>Ocean</key>
+            <value>2</value>
+          </li>
+          <li>
+            <key>Lake</key>
+            <value>1</value>
+          </li>
+        </BiomePower>
+        <CanBuildOnWater>true</CanBuildOnWater>
+        <CanBuildOnCoast>true</CanBuildOnCoast>
       </li>
       <li Class="KCSG.CustomGenOption">
         <fullClear>true</fullClear>

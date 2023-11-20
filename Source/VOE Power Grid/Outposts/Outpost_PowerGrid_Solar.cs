@@ -23,7 +23,7 @@ namespace VOEPowerGrid
         }
         public override float MaxPowerProducedByBuilding(ConstructionOption co)
         {
-            return co.FullSunPower * PowerMultiplier;
+            return co.FullSunPower * terrainPowerMultiplier * PowerMultiplier;
         }
         public override void Tick()
         {

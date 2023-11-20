@@ -18,7 +18,7 @@ namespace VOEPowerGrid
 #elif v1_4
             PowerConsumption
 #endif
-            * Mathf.Min(Outlet?.Map.windManager.WindSpeed ?? 1f, 1.5f) * tdcc.count) * PowerMultiplier : 0f);
+            * Mathf.Min(Outlet?.Map.windManager.WindSpeed ?? 1f, 1.5f) * tdcc.count) * terrainPowerMultiplier * PowerMultiplier : 0f);
             if (Outlet != null)
             {
 #if v1_3

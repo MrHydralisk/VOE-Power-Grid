@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using RimWorld;
+using RimWorld.Planet;
 using Outposts;
 using Verse;
 using UnityEngine;
@@ -13,7 +14,9 @@ namespace VOEPowerGrid
         public float PowerMultiplier = 1f;
 
         public float currentStructureAmount => (ActiveBuildingsCounter.Count() > 0 ? ActiveBuildingsCounter.Sum((ThingDefCountClass tdcc) => tdcc.count * PowerGridExt.ConstructionOptions.FirstOrDefault((ConstructionOption co) => co.BuildingDef == tdcc.thingDef).ConstructionSkillsPerOne) : 0f);
-        public float maxStructureAmount => VOEPowerGrid_Mod.Settings.BaseBuildingCapacity + TotalSkill(SkillDefOf.Construction) * VOEPowerGrid_Mod.Settings.BuildingCapacityPerSkill;
+        public float maxStructureAmount => VOEPowerGrid_Mod.Settings.BaseBuildingCapacity + TotalSkill(SkillDefOf.Construction) * VOEPowerGrid_Mod.Settings.BuildingCapacityPerSkill * terrainCapacityMultiplier;
+        public float terrainCapacityMultiplier = 1f;
+        public float terrainPowerMultiplier = 1f;
 
         protected OutpostExtension_Choose ChooseExt => base.Ext as OutpostExtension_Choose;
 
@@ -39,6 +42,53 @@ namespace VOEPowerGrid
         public override void SpawnSetup()
         {
             base.SpawnSetup();
+            CalculateTerrainMultiplier();
+        }
+
+        public virtual void CalculateTerrainMultiplier()
+        {
+            terrainCapacityMultiplier = 1f;
+            terrainPowerMultiplier = 1f;
+            Tile tile = Find.WorldGrid[this.Tile];
+            float mult = 1f;
+            if (PowerGridExt.HillinessCapacity.TryGetValue(tile.hilliness, out mult))
+            {
+                terrainCapacityMultiplier *= mult;
+            }
+            float mult1 = 1f;
+            if (PowerGridExt.HillinessPower.TryGetValue(tile.hilliness, out mult1))
+            {
+                terrainPowerMultiplier *= mult1;
+            }
+            if (!tile.Rivers.NullOrEmpty())
+            {
+                float mult2 = 1f;
+                if (!PowerGridExt.CanBuildOnWater)
+                {
+                    terrainCapacityMultiplier *= 0.75f;
+                }
+                else if (PowerGridExt.RiverCapacity.TryGetValue(tile.Rivers.MaxBy((Tile.RiverLink r) => r.river.widthOnWorld).river, out mult2))
+                {
+                    terrainCapacityMultiplier *= mult2;
+                }
+            }
+            float mult3 = 1f;
+            if (PowerGridExt.BiomeCapacity.TryGetValue(tile.biome, out mult3))
+            {
+                terrainCapacityMultiplier *= mult3;
+            }
+            float mult4 = 1f;
+            if (PowerGridExt.BiomePower.TryGetValue(tile.biome, out mult4))
+            {
+                terrainPowerMultiplier *= mult4;
+            }
+            if (PowerGridExt.CanBuildOnCoast)
+            {
+                List<int> tmpNeighbors = new List<int>();
+                Find.WorldGrid.GetTileNeighbors(this.Tile, tmpNeighbors);
+                int coasts = tmpNeighbors.Count(neighbor => Find.WorldGrid[neighbor].biome == BiomeDefOf.Ocean);
+                terrainCapacityMultiplier *= Mathf.Pow(1.25f, Mathf.Max(0, coasts - 1));
+            }
         }
 
         public ConstructionOption GetConstructionOption(ThingDef thingDef)
@@ -68,7 +118,7 @@ namespace VOEPowerGrid
 #elif v1_4
             PowerConsumption
 #endif
-            * tdcc.count) * PowerMultiplier : 0f);
+            * tdcc.count) * terrainPowerMultiplier * PowerMultiplier : 0f);
             if (Outlet != null)
             {
 #if v1_3
@@ -426,7 +476,25 @@ namespace VOEPowerGrid
             {
                 return "";
             }
-            return "VOEPowerGrid.Base.ProductionString".Translate(isNotConnected ? "VOEPowerGrid.Outlet.NotConnected".Translate().RawText : "VOEPowerGrid.Outlet.Connected".Translate(outlet.Map.Parent.Label).RawText, currentStructureAmount.ToStringSafe(), maxStructureAmount.ToStringSafe(), PowerNetworkRange.ToStringSafe(), TransmissionTowerAmount.ToStringSafe(), ProducedPower.ToStringSafe()).RawText + ((ConstructBuildingsCounter.Count() > 0) ? "VOEPowerGrid.Base.ConstructionString".Translate(string.Join("\n", ConstructBuildingsCounter.Select((ThingDefCountClass tdcc) => tdcc.thingDef.label + " " + tdcc.count.ToStringTicksToPeriodVerbose().Colorize(ColoredText.DateTimeColor)))).RawText : "") + ((DeconstructBuildingsCounter.Count() > 0) ? "VOEPowerGrid.Base.DeconstructionString".Translate(string.Join("\n", DeconstructBuildingsCounter.Select((ThingDefCountClass tdcc) => tdcc.thingDef.label + " " + tdcc.count.ToStringTicksToPeriodVerbose().Colorize(ColoredText.DateTimeColor)))).RawText : "");
+            List<string> inspectStrings = new List<string>();
+            inspectStrings.Add("VOEPowerGrid.Base.ProductionString".Translate(isNotConnected ? "VOEPowerGrid.Outlet.NotConnected".Translate().RawText : "VOEPowerGrid.Outlet.Connected".Translate(outlet.Map.Parent.Label).RawText, currentStructureAmount.ToStringSafe(), maxStructureAmount.ToStringSafe(), PowerNetworkRange.ToStringSafe(), TransmissionTowerAmount.ToStringSafe(), ProducedPower.ToStringSafe()).RawText);
+            if (ConstructBuildingsCounter.Count() > 0)
+            {
+                inspectStrings.Add("VOEPowerGrid.Base.ConstructionString".Translate(string.Join("\n", ConstructBuildingsCounter.Select((ThingDefCountClass tdcc) => tdcc.thingDef.label + " " + tdcc.count.ToStringTicksToPeriodVerbose().Colorize(ColoredText.DateTimeColor)))).RawText);
+            }
+            if (DeconstructBuildingsCounter.Count() > 0)
+            {
+                inspectStrings.Add("VOEPowerGrid.Base.DeconstructionString".Translate(string.Join("\n", DeconstructBuildingsCounter.Select((ThingDefCountClass tdcc) => tdcc.thingDef.label + " " + tdcc.count.ToStringTicksToPeriodVerbose().Colorize(ColoredText.DateTimeColor)))).RawText);
+            }
+            if (terrainCapacityMultiplier != 1f)
+            {
+                inspectStrings.Add("VOEPowerGrid.Base.TerrainCapacityString".Translate(terrainCapacityMultiplier.ToString("F")));
+            }
+            if (terrainPowerMultiplier != 1f)
+            {
+                inspectStrings.Add("VOEPowerGrid.Base.TerrainPowerString".Translate(terrainPowerMultiplier.ToString("F")));
+            }
+            return string.Join("\n", inspectStrings);
         }
     }
 }
