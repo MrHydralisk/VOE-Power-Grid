@@ -8,8 +8,8 @@
     <VOEPowerGrid.Deconstruct.Desc>Deconstruct existing building</VOEPowerGrid.Deconstruct.Desc>
     <VOEPowerGrid.Deconstruct.Reason>Nothing to deconstruct</VOEPowerGrid.Deconstruct.Reason>
     <VOEPowerGrid.Base.ProductionString>{0}Capacity: {1} / {2}\nTransmission range: {3} [{4}]\nPower: {5}</VOEPowerGrid.Base.ProductionString>
-    <VOEPowerGrid.Base.ConstructionString>\nConstucting:\n{0}</VOEPowerGrid.Base.ConstructionString>
-    <VOEPowerGrid.Base.DeconstructionString>\nDeconstructing:\n{0}</VOEPowerGrid.Base.DeconstructionString>
+    <VOEPowerGrid.Base.ConstructionString>Constucting:\n{0}</VOEPowerGrid.Base.ConstructionString>
+    <VOEPowerGrid.Base.DeconstructionString>Deconstructing:\n{0}</VOEPowerGrid.Base.DeconstructionString>
     <VOEPowerGrid.Base.AvailableBuildingString>Available Buildings</VOEPowerGrid.Base.AvailableBuildingString>
     <VOEPowerGrid.Base.TerrainCapacityString>Terrain Capacity Multiplier: {0}</VOEPowerGrid.Base.TerrainCapacityString>
     <VOEPowerGrid.Base.TerrainPowerString>Terrain Power Multiplier: {0}</VOEPowerGrid.Base.TerrainPowerString>

@@ -8,8 +8,8 @@
     <VOEPowerGrid.Deconstruct.Desc>Разобрать существующее строение</VOEPowerGrid.Deconstruct.Desc>
     <VOEPowerGrid.Deconstruct.Reason>Нечего разбирать</VOEPowerGrid.Deconstruct.Reason>
     <VOEPowerGrid.Base.ProductionString>{0}Вместимость: {1} / {2}\nДальность передачи: {3} [{4}]\nЭнерговыработка: {5}</VOEPowerGrid.Base.ProductionString>
-    <VOEPowerGrid.Base.ConstructionString>\nСтроится:\n{0}</VOEPowerGrid.Base.ConstructionString>
-    <VOEPowerGrid.Base.DeconstructionString>\nРазбирается:\n{0}</VOEPowerGrid.Base.DeconstructionString>
+    <VOEPowerGrid.Base.ConstructionString>Строится:\n{0}</VOEPowerGrid.Base.ConstructionString>
+    <VOEPowerGrid.Base.DeconstructionString>Разбирается:\n{0}</VOEPowerGrid.Base.DeconstructionString>
     <VOEPowerGrid.Base.AvailableBuildingString>Доступные строения</VOEPowerGrid.Base.AvailableBuildingString>
     <VOEPowerGrid.Base.TerrainCapacityString>Множитель вместимости от местности: {0}</VOEPowerGrid.Base.TerrainCapacityString>
     <VOEPowerGrid.Base.TerrainPowerString>Множитель энерговыработки от местности: {0}</VOEPowerGrid.Base.TerrainPowerString>
