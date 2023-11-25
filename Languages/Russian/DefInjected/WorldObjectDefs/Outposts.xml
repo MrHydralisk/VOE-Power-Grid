@@ -19,4 +19,13 @@
   <Outpost_PowerGrid_Tidal_Generator.label>Приливная электростанция</Outpost_PowerGrid_Tidal_Generator.label>
   <Outpost_PowerGrid_Tidal_Generator.description>Размещает временный автономный лагерь, который специализируется на производстве энергии с помощью генераторов приливов. Постоянно предоставляет её основной колонии фракции.</Outpost_PowerGrid_Tidal_Generator.description>
 
+  <Outpost_PowerGrid_WoodFired_Generator.label>Тепловая электростанция на дровах</Outpost_PowerGrid_WoodFired_Generator.label>
+  <Outpost_PowerGrid_WoodFired_Generator.description>Размещает временный автономный лагерь, который специализируется на производстве энергии с помощью генераторов на дровах. Постоянно предоставляет её основной колонии фракции.</Outpost_PowerGrid_WoodFired_Generator.description>
+
+  <Outpost_PowerGrid_ChemfuelPowered_Generator.label>Тепловая электростанция на химтопливе</Outpost_PowerGrid_ChemfuelPowered_Generator.label>
+  <Outpost_PowerGrid_ChemfuelPowered_Generator.description>Размещает временный автономный лагерь, который специализируется на производстве энергии с помощью генераторов на химтопливе. Постоянно предоставляет её основной колонии фракции.</Outpost_PowerGrid_ChemfuelPowered_Generator.description>
+
+  <Outpost_PowerGrid_Nuclear_Generator.label>Атомная электростанция</Outpost_PowerGrid_Nuclear_Generator.label>
+  <Outpost_PowerGrid_Nuclear_Generator.description>Размещает временный автономный лагерь, который специализируется на производстве энергии с помощью ядерных реакторов. Постоянно предоставляет её основной колонии фракции.</Outpost_PowerGrid_Nuclear_Generator.description>
+
 </LanguageData>

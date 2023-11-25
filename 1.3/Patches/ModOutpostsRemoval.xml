@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>Vanilla Furniture Expanded - Power</li>
+		</mods>
+		<nomatch Class="PatchOperationRemove">
+			<xpath>Defs/WorldObjectDef[defName="Outpost_PowerGrid_Tidal_Generator"]</xpath>
+		</nomatch>
+	</Operation>
+
+</Patch>

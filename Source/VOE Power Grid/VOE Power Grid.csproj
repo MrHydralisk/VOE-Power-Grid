@@ -93,6 +93,7 @@
     <Compile Include="HarmonyPatches.cs" />
     <Compile Include="OutpostExtension_PowerGrid.cs" />
     <Compile Include="Outposts\Outpost_PowerGrid_Tidal.cs" />
+    <Compile Include="Outposts\Outpost_PowerGrid_Refuelable.cs" />
     <Compile Include="Outposts\Outpost_PowerGrid_WindTurbine.cs" />
     <Compile Include="Outposts\Outpost_PowerGrid_Solar.cs" />
     <Compile Include="Outposts\Outpost_PowerGrid_Watermill.cs" />

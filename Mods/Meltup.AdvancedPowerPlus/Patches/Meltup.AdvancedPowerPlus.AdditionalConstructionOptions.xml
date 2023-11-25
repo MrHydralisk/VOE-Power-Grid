@@ -45,6 +45,26 @@
 					</li>
 				</value>
 			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/WorldObjectDef[defName ="Outpost_PowerGrid_Nuclear_Generator"]/modExtensions/li[@Class="VOEPowerGrid.OutpostExtension_PowerGrid"]/ConstructionOptions</xpath>
+				<value>
+					<li>
+						<BuildingDef>ASRG</BuildingDef>
+						<ConstructionSkillsPerOne>3</ConstructionSkillsPerOne>
+						<MinConstructionSkill>8</MinConstructionSkill>
+					</li>
+					<li>
+						<BuildingDef>large_ASRG</BuildingDef>
+						<ConstructionSkillsPerOne>10</ConstructionSkillsPerOne>
+						<MinConstructionSkill>10</MinConstructionSkill>
+					</li>
+					<li>
+						<BuildingDef>advanced_nuclear_generator</BuildingDef>
+						<ConstructionSkillsPerOne>20</ConstructionSkillsPerOne>
+						<MinConstructionSkill>14</MinConstructionSkill>
+					</li>
+				</value>
+			</li>
 		</operations>
 	</Operation>
 

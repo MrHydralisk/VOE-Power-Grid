@@ -13,6 +13,9 @@
     <VOEPowerGrid.Base.AvailableBuildingString>Available Buildings</VOEPowerGrid.Base.AvailableBuildingString>
     <VOEPowerGrid.Base.TerrainCapacityString>Terrain Capacity Multiplier: {0}</VOEPowerGrid.Base.TerrainCapacityString>
     <VOEPowerGrid.Base.TerrainPowerString>Terrain Power Multiplier: {0}</VOEPowerGrid.Base.TerrainPowerString>
+    <VOEPowerGrid.Base.TerrainFuelString>Terrain Fuel Gathering Multiplier: {0}</VOEPowerGrid.Base.TerrainFuelString>
+    <VOEPowerGrid.Base.FuelPowerString>Fuel Power Multiplier: {0}</VOEPowerGrid.Base.FuelPowerString>
+    <VOEPowerGrid.Base.FuelConsumptionString>Fuel Consumption Per Day: {0} {1}</VOEPowerGrid.Base.FuelConsumptionString>
     <VOEPowerGrid.MaxSkillTooLow>No colonist with high enough skill. Require {0}. Current {1}</VOEPowerGrid.MaxSkillTooLow>
     <VOEPowerGrid.ConstructionSkillCostTooHigh>Capacity too low, structure cost {0}</VOEPowerGrid.ConstructionSkillCostTooHigh>
     <VOEPowerGrid.ConstructionMaterialCostTooHigh>Not enough materials, structure cost:\n{0}</VOEPowerGrid.ConstructionMaterialCostTooHigh>
@@ -24,6 +27,8 @@
     
     <VOEPowerGrid.Letters.ActiveBuildingReset.Label>Overload of {0} Power Grid</VOEPowerGrid.Letters.ActiveBuildingReset.Label>
     <VOEPowerGrid.Letters.ActiveBuildingReset.Text>Active buildings in Power Grid have been overloaded, due to lack of capacity for maintenance. Some buildings were automatically shut down to return to safe capacity.</VOEPowerGrid.Letters.ActiveBuildingReset.Text>
+    <VOEPowerGrid.Letters.InsufficientFuel.Label>Insufficient Fuel on {0} Power Grid</VOEPowerGrid.Letters.InsufficientFuel.Label>
+    <VOEPowerGrid.Letters.InsufficientFuel.Text>The Power Grid is experiencing a fuel shortage. This will lead to a decrease in energy production.</VOEPowerGrid.Letters.InsufficientFuel.Text>
 
     <VOEPowerGrid.Settings.Title>Vanilla Outposts Expanded: Power Grid</VOEPowerGrid.Settings.Title>
     <VOEPowerGrid.Settings.PowerMultiplier>Power Multiplier</VOEPowerGrid.Settings.PowerMultiplier>

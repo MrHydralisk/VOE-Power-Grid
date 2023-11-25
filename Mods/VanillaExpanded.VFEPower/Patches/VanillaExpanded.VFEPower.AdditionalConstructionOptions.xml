@@ -60,6 +60,56 @@
 					</li>
 				</value>
 			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/WorldObjectDef[defName ="Outpost_PowerGrid_Tidal_Generator"]/modExtensions/li[@Class="VOEPowerGrid.OutpostExtension_PowerGrid"]/ConstructionOptions</xpath>
+				<value>
+					<li>
+					  <BuildingDef>VFE_TidalGenerator</BuildingDef>
+					  <ConstructionSkillsPerOne>2.5</ConstructionSkillsPerOne>
+					  <MinConstructionSkill>6</MinConstructionSkill>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/WorldObjectDef[defName ="Outpost_PowerGrid_WoodFired_Generator"]/modExtensions/li[@Class="VOEPowerGrid.OutpostExtension_PowerGrid"]/ConstructionOptions</xpath>
+				<value>
+					<li>
+						<BuildingDef>VFE_PortableWoodFiredGenerator</BuildingDef>
+						<ConstructionSkillsPerOne>1</ConstructionSkillsPerOne>
+						<MinConstructionSkill>4</MinConstructionSkill>
+					</li>
+					<li>
+						<BuildingDef>VFE_IndustrialWoodFiredGenerator</BuildingDef>
+						<ConstructionSkillsPerOne>3</ConstructionSkillsPerOne>
+						<MinConstructionSkill>8</MinConstructionSkill>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/WorldObjectDef[defName ="Outpost_PowerGrid_ChemfuelPowered_Generator"]/modExtensions/li[@Class="VOEPowerGrid.OutpostExtension_PowerGrid"]/ConstructionOptions</xpath>
+				<value>
+					<li>
+						<BuildingDef>VFE_PortableChemfuelPoweredGenerator</BuildingDef>
+						<ConstructionSkillsPerOne>1</ConstructionSkillsPerOne>
+						<MinConstructionSkill>6</MinConstructionSkill>
+					</li>
+					<li>
+						<BuildingDef>VFE_IndustrialChemfuelPoweredGenerator</BuildingDef>
+						<ConstructionSkillsPerOne>3</ConstructionSkillsPerOne>
+						<MinConstructionSkill>8</MinConstructionSkill>
+					</li>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/WorldObjectDef[defName ="Outpost_PowerGrid_Nuclear_Generator"]/modExtensions/li[@Class="VOEPowerGrid.OutpostExtension_PowerGrid"]/ConstructionOptions</xpath>
+				<value>
+					<li>
+					  <BuildingDef>VPE_NuclearGenerator</BuildingDef>
+					  <ConstructionSkillsPerOne>15</ConstructionSkillsPerOne>
+					  <MinConstructionSkill>14</MinConstructionSkill>
+					</li>
+				</value>
+			</li>
 		</operations>
 	</Operation>
 

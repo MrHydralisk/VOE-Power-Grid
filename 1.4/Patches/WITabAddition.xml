@@ -4,7 +4,7 @@
 	<Operation Class="PatchOperationSequence">
 		<operations>
 			<li Class="PatchOperationAdd">
-				<xpath>Defs/WorldObjectDef[defName ="Outpost_PowerGrid_Watermill_Generator" or defName ="Outpost_PowerGrid_WindTurbine" or defName ="Outpost_PowerGrid_Solar_Generator" or defName ="Outpost_PowerGrid_Geothermal_Generator" or defName ="Outpost_PowerGrid_PowerCell" or defName ="Outpost_PowerGrid_Tidal_Generator"]</xpath>
+				<xpath>Defs/WorldObjectDef[defName ="Outpost_PowerGrid_Watermill_Generator" or defName ="Outpost_PowerGrid_WindTurbine" or defName ="Outpost_PowerGrid_Solar_Generator" or defName ="Outpost_PowerGrid_Geothermal_Generator" or defName ="Outpost_PowerGrid_PowerCell" or defName ="Outpost_PowerGrid_Tidal_Generator" or defName ="Outpost_PowerGrid_WoodFired_Generator" or defName ="Outpost_PowerGrid_ChemfuelPowered_Generator" or defName ="Outpost_PowerGrid_Nuclear_Generator"]</xpath>
 				<order>Append</order>
 				<value>
 					<inspectorTabs>

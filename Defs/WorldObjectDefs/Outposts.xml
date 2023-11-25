@@ -290,4 +290,235 @@
     </modExtensions>
   </WorldObjectDef>
 
+  <WorldObjectDef ParentName="OutpostBase">
+    <defName>Outpost_PowerGrid_Tidal_Generator</defName>
+    <label>tidal generators power grid</label>
+    <description>Places a temporary, autonomously-led camp that specializes in generating power with tidal generators. Constantly providing it to faction's primary colony.</description>
+    <worldObjectClass>VOEPowerGrid.Outpost_PowerGrid_Tidal</worldObjectClass>
+    <expandingIconTexture>WorldObjects/OutpostTidalGeneratorGrid</expandingIconTexture>
+    <expandingIconDrawSize>1.5</expandingIconDrawSize>
+    <modExtensions>
+      <li Class="Outposts.OutpostExtension">
+        <RequiredSkills>
+          <Construction>10</Construction>
+        </RequiredSkills>
+        <TicksPerProduction>-1</TicksPerProduction>
+        <TicksToPack>60000</TicksToPack>
+        <TicksToSetUp>60000</TicksToSetUp>
+        <ProvidedFood>MealFine_Veg</ProvidedFood>
+        <DisplaySkills>
+          <li>Construction</li>
+        </DisplaySkills>
+      </li>
+      <li Class="VOEPowerGrid.OutpostExtension_PowerGrid">
+        <ConstructionOptions>
+        </ConstructionOptions>
+        <BiomePower>
+          <li>
+            <key>Ocean</key>
+            <value>2</value>
+          </li>
+          <li>
+            <key>Lake</key>
+            <value>1</value>
+          </li>
+        </BiomePower>
+        <CanBuildOnWater>true</CanBuildOnWater>
+        <CanBuildOnCoast>true</CanBuildOnCoast>
+      </li>
+      <li Class="KCSG.CustomGenOption">
+        <fullClear>true</fullClear>
+      </li>
+    </modExtensions>
+  </WorldObjectDef>
+
+  <WorldObjectDef ParentName="OutpostBase">
+    <defName>Outpost_PowerGrid_WoodFired_Generator</defName>
+    <label>wood-fired generators power grid</label>
+    <description>Places a temporary, autonomously-led camp that specializes in generating power with wood-fired generators. Constantly providing it to faction's primary colony.</description>
+    <worldObjectClass>VOEPowerGrid.Outpost_PowerGrid_Refuelable</worldObjectClass>
+    <expandingIconTexture>WorldObjects/OutpostWoodFiredGeneratorGrid</expandingIconTexture>
+    <modExtensions>
+      <li Class="Outposts.OutpostExtension">
+        <RequiredSkills>
+          <Construction>10</Construction>
+        </RequiredSkills>
+        <TicksPerProduction>-1</TicksPerProduction>
+        <TicksToPack>60000</TicksToPack>
+        <TicksToSetUp>60000</TicksToSetUp>
+        <ProvidedFood>MealFine_Veg</ProvidedFood>
+        <DisplaySkills>
+          <li>Construction</li>
+        </DisplaySkills>
+      </li>
+      <li Class="VOEPowerGrid.OutpostExtension_PowerGrid">
+        <ConstructionOptions>
+          <li>
+            <BuildingDef>WoodFiredGenerator</BuildingDef>
+            <ConstructionSkillsPerOne>1.5</ConstructionSkillsPerOne>
+            <MinConstructionSkill>4</MinConstructionSkill>
+          </li>
+        </ConstructionOptions>
+        <fuelFilter>
+          <thingDefs>
+            <li>WoodLog</li>
+          </thingDefs>
+        </fuelFilter>
+        <HillinessFuel>
+          <li>
+            <key>Flat</key>
+            <value>1</value>
+          </li>
+          <li>
+            <key>SmallHills</key>
+            <value>0.7</value>
+          </li>
+          <li>
+            <key>LargeHills</key>
+            <value>0.4</value>
+          </li>
+          <li>
+            <key>Mountainous</key>
+            <value>0.1</value>
+          </li>
+        </HillinessFuel>
+        <BiomeFuel>
+          <li>
+            <key>TropicalRainforest</key>
+            <value>0.5</value>
+          </li>
+          <li>
+            <key>TemperateForest</key>
+            <value>0.5</value>
+          </li>
+          <li>
+            <key>BorealForest</key>
+            <value>0.5</value>
+          </li>
+          <li>
+            <key>TropicalSwamp</key>
+            <value>0.25</value>
+          </li>
+          <li>
+            <key>TemperateSwamp</key>
+            <value>0.25</value>
+          </li>
+          <li>
+            <key>ColdBog</key>
+            <value>0.25</value>
+          </li>
+        </BiomeFuel>
+      </li>
+      <li Class="KCSG.CustomGenOption">
+        <fullClear>true</fullClear>
+      </li>
+    </modExtensions>
+  </WorldObjectDef>
+
+  <WorldObjectDef ParentName="OutpostBase">
+    <defName>Outpost_PowerGrid_ChemfuelPowered_Generator</defName>
+    <label>chemfuel powered generators power grid</label>
+    <description>Places a temporary, autonomously-led camp that specializes in generating power with chemfuel powered generators. Constantly providing it to faction's primary colony.</description>
+    <worldObjectClass>VOEPowerGrid.Outpost_PowerGrid_Refuelable</worldObjectClass>
+    <expandingIconTexture>WorldObjects/OutpostChemfuelPoweredGeneratorGrid</expandingIconTexture>
+    <modExtensions>
+      <li Class="Outposts.OutpostExtension">
+        <RequiredSkills>
+          <Construction>10</Construction>
+        </RequiredSkills>
+        <TicksPerProduction>-1</TicksPerProduction>
+        <TicksToPack>60000</TicksToPack>
+        <TicksToSetUp>60000</TicksToSetUp>
+        <ProvidedFood>MealFine_Veg</ProvidedFood>
+        <DisplaySkills>
+          <li>Construction</li>
+        </DisplaySkills>
+      </li>
+      <li Class="VOEPowerGrid.OutpostExtension_PowerGrid">
+        <ConstructionOptions>
+          <li>
+            <BuildingDef>ChemfuelPoweredGenerator</BuildingDef>
+            <ConstructionSkillsPerOne>1.5</ConstructionSkillsPerOne>
+            <MinConstructionSkill>6</MinConstructionSkill>
+          </li>
+        </ConstructionOptions>
+        <fuelFilter>
+          <thingDefs>
+            <li>Chemfuel</li>
+          </thingDefs>
+        </fuelFilter>
+        <BiomeFuel>
+          <li>
+            <key>ExtremeDesert</key>
+            <value>0.5</value>
+          </li>
+          <li>
+            <key>Desert</key>
+            <value>0.4</value>
+          </li>
+          <li>
+            <key>AridShrubland</key>
+            <value>0.2</value>
+          </li>
+        </BiomeFuel>
+      </li>
+      <li Class="KCSG.CustomGenOption">
+        <fullClear>true</fullClear>
+      </li>
+    </modExtensions>
+  </WorldObjectDef>
+
+  <WorldObjectDef ParentName="OutpostBase">
+    <defName>Outpost_PowerGrid_Nuclear_Generator</defName>
+    <label>nuclear reactor power grid</label>
+    <description>Places a temporary, autonomously-led camp that specializes in generating power with nuclear reactor. Constantly providing it to faction's primary colony.</description>
+    <worldObjectClass>VOEPowerGrid.Outpost_PowerGrid_Refuelable</worldObjectClass>
+    <expandingIconTexture>WorldObjects/OutpostNucleardGeneratorGrid</expandingIconTexture>
+    <modExtensions>
+      <li Class="Outposts.OutpostExtension">
+        <RequiredSkills>
+          <Construction>10</Construction>
+        </RequiredSkills>
+        <TicksPerProduction>-1</TicksPerProduction>
+        <TicksToPack>60000</TicksToPack>
+        <TicksToSetUp>60000</TicksToSetUp>
+        <ProvidedFood>MealFine_Veg</ProvidedFood>
+        <DisplaySkills>
+          <li>Construction</li>
+        </DisplaySkills>
+      </li>
+      <li Class="VOEPowerGrid.OutpostExtension_PowerGrid">
+        <ConstructionOptions>
+        </ConstructionOptions>
+        <fuelFilter>
+          <thingDefs>
+						<li>Uranium</li>
+          </thingDefs>
+        </fuelFilter>
+        <HillinessFuel>
+          <li>
+            <key>Flat</key>
+            <value>0</value>
+          </li>
+          <li>
+            <key>SmallHills</key>
+            <value>0</value>
+          </li>
+          <li>
+            <key>LargeHills</key>
+            <value>0</value>
+          </li>
+          <li>
+            <key>Mountainous</key>
+            <value>0.25</value>
+          </li>
+        </HillinessFuel>
+        <BiomeFuelDefault>1</BiomeFuelDefault>
+      </li>
+      <li Class="KCSG.CustomGenOption">
+        <fullClear>true</fullClear>
+      </li>
+    </modExtensions>
+  </WorldObjectDef>
+
 </Defs>

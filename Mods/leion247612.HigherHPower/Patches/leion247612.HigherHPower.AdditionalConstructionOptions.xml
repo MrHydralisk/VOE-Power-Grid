@@ -45,6 +45,16 @@
 					</li>
 				</value>
 			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/WorldObjectDef[defName ="Outpost_PowerGrid_ChemfuelPowered_Generator"]/modExtensions/li[@Class="VOEPowerGrid.OutpostExtension_PowerGrid"]/ConstructionOptions</xpath>
+				<value>
+					<li>
+						<BuildingDef>ChemfuelPoweredGenerator_II</BuildingDef>
+						<ConstructionSkillsPerOne>2</ConstructionSkillsPerOne>
+						<MinConstructionSkill>8</MinConstructionSkill>
+					</li>
+				</value>
+			</li>
 		</operations>
 	</Operation>
 
