@@ -97,7 +97,7 @@ namespace VOEPowerGrid
         public override void Tick()
         {
             base.Tick();
-            if (Find.TickManager.TicksGame % 2500 == 0)//60000 == 0)
+            if (Find.TickManager.TicksGame % 60000 == 0)
             {
                 ConsumeFuel();
             }
