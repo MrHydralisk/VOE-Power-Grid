@@ -49,7 +49,7 @@ namespace VOEPowerGrid
         public void ConsumeFuel()
         {
             float fuelConsumtionRate = FuelConsumptionRate;
-            int fuelCR = (int)(fuelConsumtionRate * (1 - terrainFuelMultiplier));
+            int fuelCR = Mathf.CeilToInt(fuelConsumtionRate * (1 - terrainFuelMultiplier));
             Log.Message("1: " + fuelCR.ToString() + " | " + terrainFuelMultiplier.ToString() + " | " + fuelConsumtionRate.ToString());
             if (fuelCR > 0)
             {
@@ -74,7 +74,7 @@ namespace VOEPowerGrid
                         }
                     }
                 }
-                fuelPowerMultiplier = 1 - (fuelCR / (int)fuelConsumtionRate);
+                fuelPowerMultiplier = 1 - (fuelCR / Mathf.CeilToInt(fuelConsumtionRate));
                 if (fuelPowerMultiplier >= 1)
                 {
                     fuelFull = true;
