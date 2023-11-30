@@ -43,6 +43,7 @@ namespace VOEPowerGrid
         {
             base.SpawnSetup();
             CalculateTerrainMultiplier();
+            CheckStructureAmount();
         }
 
         public virtual void CalculateTerrainMultiplier()
