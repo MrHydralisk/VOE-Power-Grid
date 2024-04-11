@@ -23,11 +23,7 @@ namespace VOEPowerGrid
         public override void SetUpPowerVars()
         {
             base.SetUpPowerVars();
-#if v1_3
-               UpdateDesiredPowerOutput1_3();
-#elif v1_4
             UpdateDesiredPowerOutput();
-#endif
         }
 
         public void Disconnect()
@@ -35,11 +31,7 @@ namespace VOEPowerGrid
             outpostPowerGrid?.SetNewOutlet(null);
             outpostPowerGrid = null;
             powerLossDueToRange = 0;
-#if v1_3
-            UpdateDesiredPowerOutput1_3();
-#elif v1_4
             UpdateDesiredPowerOutput();
-#endif
         }
 
         public override IEnumerable<Gizmo> CompGetGizmosExtra()
@@ -85,15 +77,12 @@ namespace VOEPowerGrid
                 defaultLabel = "VOEPowerGrid.Outlet.Connect.Label".Translate().RawText,
                 defaultDesc = "VOEPowerGrid.Outlet.Connect.Desc".Translate().RawText,
                 icon = TexOutposts.ConnectTex,
-                disabled = powerGrids.Count <= 0,
+                Disabled = powerGrids.Count <= 0,
                 disabledReason = "VOEPowerGrid.Outlet.Connect.Reason".Translate().RawText
             };
         }
-#if v1_3
-        public virtual void UpdateDesiredPowerOutput1_3()
-#elif v1_4
+
         public override void UpdateDesiredPowerOutput()
-#endif
         {
             PowerOutput = DesiredPowerOutput * (1f - powerLossDueToRange);
         }

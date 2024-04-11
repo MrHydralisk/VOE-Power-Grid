@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+	<Operation Class="PatchOperationSequence">
+		<operations>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/WorldObjectDef[defName ="Outpost_PowerGrid_Watermill_Generator"]/modExtensions/li[@Class="KCSG.CustomGenOption"]</xpath>
+				<order>Prepend</order>
+				<value>
+					<chooseFromlayouts>
+						<li>Outpost_Struct_PowerGrid</li>
+					</chooseFromlayouts>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/WorldObjectDef[defName ="Outpost_PowerGrid_WindTurbine"]/modExtensions/li[@Class="KCSG.CustomGenOption"]</xpath>
+				<order>Prepend</order>
+				<value>
+					<chooseFromlayouts>
+						<li>Outpost_Struct_PowerGrid</li>
+					</chooseFromlayouts>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/WorldObjectDef[defName ="Outpost_PowerGrid_Solar_Generator"]/modExtensions/li[@Class="KCSG.CustomGenOption"]</xpath>
+				<order>Prepend</order>
+				<value>
+					<chooseFromlayouts>
+						<li>Outpost_Struct_PowerGrid</li>
+					</chooseFromlayouts>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/WorldObjectDef[defName ="Outpost_PowerGrid_Geothermal_Generator"]/modExtensions/li[@Class="KCSG.CustomGenOption"]</xpath>
+				<order>Prepend</order>
+				<value>
+					<chooseFromlayouts>
+						<li>Outpost_Struct_PowerGrid</li>
+					</chooseFromlayouts>
+				</value>
+			</li>
+			<li Class="PatchOperationAdd">
+				<xpath>Defs/WorldObjectDef[defName ="Outpost_PowerGrid_PowerCell"]/modExtensions/li[@Class="KCSG.CustomGenOption"]</xpath>
+				<order>Prepend</order>
+				<value>
+					<chooseFromlayouts>
+						<li>Outpost_Struct_PowerGrid</li>
+					</chooseFromlayouts>
+				</value>
+			</li>
+		</operations>
+	</Operation>
+
+	<Operation Class="PatchOperationFindMod">
+		<mods>
+			<li>VanillaExpanded.VFEPower</li>
+		</mods>
+		<match Class="PatchOperationSequence">
+			<operations>
+				<li Class="PatchOperationAdd">
+					<xpath>Defs/WorldObjectDef[defName ="Outpost_PowerGrid_Tidal_Generator"]/modExtensions/li[@Class="KCSG.CustomGenOption"]</xpath>
+					<order>Prepend</order>
+					<value>
+						<chooseFromlayouts>
+							<li>Outpost_Struct_PowerGrid</li>
+						</chooseFromlayouts>
+					</value>
+				</li>
+			</operations>
+		</match>
+	</Operation>
+
+</Patch>

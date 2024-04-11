@@ -12,20 +12,10 @@ namespace VOEPowerGrid
         private int ticksSinceWeatherUpdate;
         public override void UpdateProducedPower()
         {
-            RecashProducedPower(ActiveBuildingsCounter.Count() > 0 ? ActiveBuildingsCounter.Sum((ThingDefCountClass tdcc) => -tdcc.thingDef.GetCompProperties<CompProperties_Power>().
-#if v1_3
-            basePowerConsumption
-#elif v1_4
-            PowerConsumption
-#endif
-            * Mathf.Min(Outlet?.Map.windManager.WindSpeed ?? 1f, 1.5f) * tdcc.count) * terrainPowerMultiplier * PowerMultiplier : 0f);
+            RecashProducedPower(ActiveBuildingsCounter.Count() > 0 ? ActiveBuildingsCounter.Sum((ThingDefCountClass tdcc) => -tdcc.thingDef.GetCompProperties<CompProperties_Power>().PowerConsumption * Mathf.Min(Outlet?.Map.windManager.WindSpeed ?? 1f, 1.5f) * tdcc.count) * terrainPowerMultiplier * PowerMultiplier : 0f);
             if (Outlet != null)
             {
-#if v1_3
-                Outlet.GetComp<CompPowerGridOutlet>().UpdateDesiredPowerOutput1_3();
-#elif v1_4
                 Outlet.GetComp<CompPowerGridOutlet>().UpdateDesiredPowerOutput();
-#endif
             }
         }
         public override void Tick()

@@ -113,20 +113,10 @@ namespace VOEPowerGrid
 
         public virtual void UpdateProducedPower()
         {
-            RecashProducedPower(ActiveBuildingsCounter.Count() > 0 ? ActiveBuildingsCounter.Sum((ThingDefCountClass tdcc) => -tdcc.thingDef.GetCompProperties<CompProperties_Power>().
-#if v1_3
-            basePowerConsumption
-#elif v1_4
-            PowerConsumption
-#endif
-            * tdcc.count) * terrainPowerMultiplier * PowerMultiplier : 0f);
+            RecashProducedPower(ActiveBuildingsCounter.Count() > 0 ? ActiveBuildingsCounter.Sum((ThingDefCountClass tdcc) => -tdcc.thingDef.GetCompProperties<CompProperties_Power>().PowerConsumption * tdcc.count) * terrainPowerMultiplier * PowerMultiplier : 0f);
             if (Outlet != null)
             {
-#if v1_3
-                Outlet.GetComp<CompPowerGridOutlet>().UpdateDesiredPowerOutput1_3();
-#elif v1_4
                 Outlet.GetComp<CompPowerGridOutlet>().UpdateDesiredPowerOutput();
-#endif
             }
         }
 
@@ -343,13 +333,7 @@ namespace VOEPowerGrid
 
         public virtual float MaxPowerProducedByBuilding(ConstructionOption co)
         {
-            return -co.BuildingDef.GetCompProperties<CompProperties_Power>().
-#if v1_3
-                basePowerConsumption
-#elif v1_4
-                PowerConsumption
-#endif 
-                * PowerMultiplier;
+            return -co.BuildingDef.GetCompProperties<CompProperties_Power>().PowerConsumption * PowerMultiplier;
         }
 
         public override IEnumerable<Gizmo> GetGizmos()
@@ -437,7 +421,7 @@ namespace VOEPowerGrid
                 defaultLabel = "VOEPowerGrid.Deconstruct.Label".Translate().RawText,
                 defaultDesc = "VOEPowerGrid.Deconstruct.Desc".Translate().RawText,
                 icon = ContentFinder<Texture2D>.Get("UI/Designators/HomeAreaOff"),
-                disabled = BuildingsCounter.NullOrEmpty() && TransmissionTowerAmount <= 0,
+                Disabled = BuildingsCounter.NullOrEmpty() && TransmissionTowerAmount <= 0,
                 disabledReason = "VOEPowerGrid.Deconstruct.Reason".Translate().RawText
             };
         }

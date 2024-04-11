@@ -14,11 +14,7 @@ namespace VOEPowerGrid
             RecashProducedPower(ActiveBuildingsCounter.Count() > 0 ? ActiveBuildingsCounter.Sum((ThingDefCountClass tdcc) => Mathf.Lerp(GetConstructionOption(tdcc.thingDef).NightPower, GetConstructionOption(tdcc.thingDef).FullSunPower, Outlet?.Map.skyManager.CurSkyGlow ?? 1f) * tdcc.count) * PowerMultiplier : 0f);
             if (Outlet != null)
             {
-#if v1_3
-                Outlet.GetComp<CompPowerGridOutlet>().UpdateDesiredPowerOutput1_3();
-#elif v1_4
                 Outlet.GetComp<CompPowerGridOutlet>().UpdateDesiredPowerOutput();
-#endif
             }
         }
         public override float MaxPowerProducedByBuilding(ConstructionOption co)

@@ -32,17 +32,19 @@ For Non Renewable Power Grid Outposts it is highly recommended to use [Vanilla O
 
 [Vanilla Outposts Expanded: Additional Outposts](https://steamcommunity.com/sharedfiles/filedetails/?id=2873841790)
 
+## Links
+
+[Steam Workshop Page](https://steamcommunity.com/sharedfiles/filedetails/?id=2915686437)
+
+[Discord](https://discord.gg/tKsBgzzTsG)
+
 ## Mod Compatibility
 
 Should have no compatibility issues with other mods, unless Vanilla Outposts Expanded have. Detailed information about supported mods with power buildings listed in Discussions "Mod compatability".
 
 Info about additional things that added with other dlc/mods in Discussions.
 
-[Steam Workshop Page](https://steamcommunity.com/sharedfiles/filedetails/?id=2915686437)
-
 **This mod is an unofficial addition for VE.** This mod doesn't require Vanilla Outposts Expanded and VOE: Additional Outposts to work, but it highly recommended to use it.
-
-Versions before Rimworld 1.3 wasn't tested, but might work.
 
 Supported languages: English, Russian.
 
