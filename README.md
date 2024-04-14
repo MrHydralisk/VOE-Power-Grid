@@ -1,5 +1,7 @@
 # Vanilla Outposts Expanded: Power Grid
 
+![Text](/Mod%20Page/Images/VOE%20Power%20Grid.png)
+
 If you ever wanted to build a power plant outside of a colony, then this mod can help you with that.
 
 ## Mod Contents
