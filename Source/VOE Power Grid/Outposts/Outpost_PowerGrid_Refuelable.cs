@@ -21,7 +21,7 @@ namespace VOEPowerGrid
             terrainFuelMultiplier = 1f;
             Tile tile = Find.WorldGrid[this.Tile];
             float biomeValue = 1f;
-            if (PowerGridExt.BiomeFuel.TryGetValue(tile.biome, out biomeValue))
+            if (PowerGridExt.BiomeFuel.TryGetValue(tile.PrimaryBiome, out biomeValue))
             {
                 terrainFuelMultiplier *= biomeValue;
             }

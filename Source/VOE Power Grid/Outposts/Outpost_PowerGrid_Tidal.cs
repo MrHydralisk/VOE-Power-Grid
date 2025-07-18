@@ -2,6 +2,7 @@
 using RimWorld;
 using Outposts;
 using Verse;
+using RimWorld.Planet;
 
 namespace VOEPowerGrid
 {
@@ -10,11 +11,11 @@ namespace VOEPowerGrid
         public override void CalculateTerrainMultiplier()
         {
             base.CalculateTerrainMultiplier();
-            List<int> tmpNeighbors = new List<int>();
+            List<PlanetTile> tmpNeighbors = new List<PlanetTile>();
             Find.WorldGrid.GetTileNeighbors(this.Tile, tmpNeighbors);
             foreach (int neighbor in tmpNeighbors)
             {
-                BiomeDef bd = Find.WorldGrid[neighbor].biome;
+                BiomeDef bd = Find.WorldGrid[neighbor].PrimaryBiome;
                 float mult = 1f;
                 if (PowerGridExt.BiomePower.TryGetValue(bd, out mult))
                 {

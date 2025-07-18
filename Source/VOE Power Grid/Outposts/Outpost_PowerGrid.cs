@@ -61,33 +61,34 @@ namespace VOEPowerGrid
             {
                 terrainPowerMultiplier *= mult1;
             }
-            if (!tile.Rivers.NullOrEmpty())
+            SurfaceTile sTile = tile as SurfaceTile;
+            if (!sTile.Rivers.NullOrEmpty())
             {
                 float mult2 = 1f;
                 if (!PowerGridExt.CanBuildOnWater)
                 {
                     terrainCapacityMultiplier *= 0.75f;
                 }
-                else if (PowerGridExt.RiverCapacity.TryGetValue(tile.Rivers.MaxBy((Tile.RiverLink r) => r.river.widthOnWorld).river, out mult2))
+                else if (PowerGridExt.RiverCapacity.TryGetValue(sTile.Rivers.MaxBy((SurfaceTile.RiverLink r) => r.river.widthOnWorld).river, out mult2))
                 {
                     terrainCapacityMultiplier *= mult2;
                 }
             }
             float mult3 = 1f;
-            if (PowerGridExt.BiomeCapacity.TryGetValue(tile.biome, out mult3))
+            if (PowerGridExt.BiomeCapacity.TryGetValue(tile.PrimaryBiome, out mult3))
             {
                 terrainCapacityMultiplier *= mult3;
             }
             float mult4 = 1f;
-            if (PowerGridExt.BiomePower.TryGetValue(tile.biome, out mult4))
+            if (PowerGridExt.BiomePower.TryGetValue(tile.PrimaryBiome, out mult4))
             {
                 terrainPowerMultiplier *= mult4;
             }
             if (PowerGridExt.CanBuildOnCoast)
             {
-                List<int> tmpNeighbors = new List<int>();
+                List<PlanetTile> tmpNeighbors = new List<PlanetTile>();
                 Find.WorldGrid.GetTileNeighbors(this.Tile, tmpNeighbors);
-                int coasts = tmpNeighbors.Count(neighbor => Find.WorldGrid[neighbor].biome == BiomeDefOf.Ocean);
+                int coasts = tmpNeighbors.Count(neighbor => Find.WorldGrid[neighbor].PrimaryBiome == BiomeDefOf.Ocean);
                 terrainCapacityMultiplier *= Mathf.Pow(1.25f, Mathf.Max(0, coasts - 1));
             }
         }

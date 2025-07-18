@@ -36,4 +36,17 @@
 		<li>/</li>
 		<li>1.5</li>
 	</v1.5>
+	<v1.6>
+		<li IfModActive="Ludeon.RimWorld.Royalty">Mods/Royalty</li>
+		<li IfModActive="VanillaExpanded.VFEPower">Mods/VanillaExpanded.VFEPower</li>
+		<li IfModActive="OskarPotocki.VanillaFactionsExpanded.SettlersModule">Mods/OskarPotocki.VanillaFactionsExpanded.SettlersModule</li>
+		<li IfModActive="VanillaExpanded.VFEA">Mods/VanillaExpanded.VFEA</li>
+		<li IfModActive="Mlie.MechanoidPower">Mods/Mlie.MechanoidPower</li>
+		<li IfModActive="leion247612.HigherHPower">Mods/leion247612.HigherHPower</li>
+		<li IfModActive="Dubwise.Rimatomics">Mods/Dubwise.Rimatomics</li>
+		<li IfModActive="Meltup.AdvancedPowerPlus">Mods/Meltup.AdvancedPowerPlus</li>
+		<li>/</li>
+		<li>1.5</li>
+		<li>1.6</li>
+	</v1.6>
 </loadFolders>

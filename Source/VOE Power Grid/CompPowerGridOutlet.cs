@@ -49,11 +49,11 @@ namespace VOEPowerGrid
                     {
                         if (!opd.isNotConnected)
                         {
-                            return new FloatMenuOption("VOEPowerGrid.Outlet.AlreadyConnected".Translate(opd.Label).RawText, action: null, itemIcon: opd.ExpandingIcon, iconColor: opd.ExpandingIconColor);
+                            return new FloatMenuOption("VOEPowerGrid.Outlet.AlreadyConnected".Translate(opd.Label).RawText, action: null, iconTex: opd.ExpandingIcon, iconColor: opd.ExpandingIconColor);
                         }
                         else if (opd.PowerNetworkRange < Find.WorldGrid.TraversalDistanceBetween(this.parent.Tile, opd.Tile))
                         {
-                            return new FloatMenuOption("VOEPowerGrid.Outlet.PowerRangeNotEnough".Translate(opd.Label, opd.PowerNetworkRange, Find.WorldGrid.TraversalDistanceBetween(this.parent.Tile, opd.Tile)).RawText, action: null, itemIcon: opd.ExpandingIcon, iconColor: opd.ExpandingIconColor);
+                            return new FloatMenuOption("VOEPowerGrid.Outlet.PowerRangeNotEnough".Translate(opd.Label, opd.PowerNetworkRange, Find.WorldGrid.TraversalDistanceBetween(this.parent.Tile, opd.Tile)).RawText, action: null,iconTex: opd.ExpandingIcon, iconColor: opd.ExpandingIconColor);
                         }
                         else
                         {
@@ -63,7 +63,7 @@ namespace VOEPowerGrid
                                 outpostPowerGrid = opd;
                                 powerLossDueToRange = VOEPowerGrid_Mod.Settings.PowerLossPerTiles > 0 ? Mathf.Min(1f, Mathf.Max(0f, ((Find.WorldGrid.TraversalDistanceBetween(this.parent.Tile, opd.Tile) / (float)VOEPowerGrid_Mod.Settings.PowerLossPerTiles) - 1f) / 100)) : 0f;
                                 outpostPowerGrid?.SetNewOutlet(this.parent);
-                            }, itemIcon: opd.ExpandingIcon, iconColor: opd.ExpandingIconColor);
+                            }, iconTex: opd.ExpandingIcon, iconColor: opd.ExpandingIconColor);
                         }                    
                     })
                         .ToList();
@@ -71,7 +71,7 @@ namespace VOEPowerGrid
                         FMO.Add(new FloatMenuOption("VOEPowerGrid.Outlet.Disconnect".Translate(outpostPowerGrid.Label).RawText, delegate
                         {
                             Disconnect();
-                        }, itemIcon: outpostPowerGrid.ExpandingIcon, iconColor: outpostPowerGrid.ExpandingIconColor));
+                        }, iconTex: outpostPowerGrid.ExpandingIcon, iconColor: outpostPowerGrid.ExpandingIconColor));
                     Find.WindowStack.Add(new FloatMenu(FMO));
                 },
                 defaultLabel = "VOEPowerGrid.Outlet.Connect.Label".Translate().RawText,
